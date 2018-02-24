@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Forms Excercise</title>
+  </head>
+
+  <body>
+    <h1>Register</h1>
+    <!-- action=new page or stores data in backend database -->
+    <!-- Method = are you "get" data from somewhere or "post" it somewhere -->
+  <form action="https://www.wikipedia.org/" method="get">
+  <div>
+    <label for:"FirstName">First Name:</label>
+      <input id:"FirstName" type="text" required placeholder="John">
+
+    <label for="LastName">Last Name:</label>
+      <input id:"LastName" type="text" required placeholder="Smith">
+  </div>
+
+<!-- If you want to give only 1 selection option amongst radio input types, you must create a "name" attribute and set it for all the inputs you want to group together. If you want to store the selected value,  you must create a "value" and store the value for each name  -->
+  <div>
+    <label for="Male">Male</label>
+      <input name="Gender" id="Male" type="radio" value="Male">
+    <label for="Female">Female</label>
+      <input name="Gender" id="Female" type="radio" value="Female">
+    <label for="Other">Other</label>
+      <input  name="Gender" id="other" type="radio" value="Other">
+  </div>
+
+<!-- If you want the labels to be tied to the inputs ou must use "for" and "ID" attributes together -->
+  <div>
+    <label for="Email">Email:</label>
+      <input id="Email" type="email" required placeholder="your email">
+    <label for="Password">Password:</label>
+      <input id="Password" type="password" minlength="5" maxlength="10" placeholder="password">
+  </div>
+
+  <div>
+    Birthday:
+      <select name="Month">
+        <option>January</option>
+        <option>February</option>
+        <option>March</option>
+      </select>
+      <select name="Day">
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+      </select>
+      <select name="Year">
+        <option>2018</option>
+        <option>2017</option>
+        <option>2016</option>
+      </select>
+  </div>
+
+  <div>
+    <label for="Agree">I agree to the terms and conditions</label>
+    <input id="Agree" type="checkbox">
+  </div>
+  <button>Submit</button>
+  </form>
+
+  </body>
+</html>
