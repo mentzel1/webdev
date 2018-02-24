@@ -12,10 +12,10 @@
   <form action="https://www.wikipedia.org/" method="get">
   <div>
     <label for:"FirstName">First Name:</label>
-      <input id:"FirstName" type="text" required placeholder="John">
+      <input name="FirstName" id:"FirstName" type="text" required placeholder="John">
 
     <label for="LastName">Last Name:</label>
-      <input id:"LastName" type="text" required placeholder="Smith">
+      <input name="LastName" id:"LastName" type="text" required placeholder="Smith">
   </div>
 
 <!-- If you want to give only 1 selection option amongst radio input types, you must create a "name" attribute and set it for all the inputs you want to group together. If you want to store the selected value,  you must create a "value" and store the value for each name  -->
@@ -33,26 +33,31 @@
     <label for="Email">Email:</label>
       <input id="Email" type="email" required placeholder="your email">
     <label for="Password">Password:</label>
-      <input id="Password" type="password" minlength="5" maxlength="10" placeholder="password">
+      <input id="Password" type="password" minlength="5" maxlength="10" placeholder="password" title="Password must be between 5 to 10 charectors">
   </div>
 
+<!-- We do not use "for" and "id" here because we are encompasing all input in it rather than just placing it above the input, in this case are input is select -->
   <div>
-    Birthday:
+    <label>Birthday:
       <select name="Month">
+        <option>Month</option>
         <option>January</option>
         <option>February</option>
         <option>March</option>
       </select>
       <select name="Day">
+        <option>Day</option>
         <option>0</option>
         <option>1</option>
         <option>2</option>
       </select>
       <select name="Year">
+        <option>Year</option>
         <option>2018</option>
         <option>2017</option>
         <option>2016</option>
       </select>
+    </label>
   </div>
 
   <div>
