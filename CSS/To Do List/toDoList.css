@@ -1,0 +1,53 @@
+body{
+background-image: url(https://wallpaperscraft.com/image/line_background_black_stripes_50792_3840x2400.jpg);
+}
+
+h1{
+  color:#ff6600;
+  background-color: #000033;
+  /* max-width:50%;
+  height:50%; */
+}
+
+.subContainer{
+  background-color:  #99b3e6;
+  color: #000033;
+  /*max-width:50%; */
+  height:50%;
+  border-radius:15px;
+}
+
+ul{
+  padding-left: 50px;
+}
+
+h3{
+  padding-left: 50px;
+}
+
+h4{
+  padding-left: 50px;
+}
+
+.container{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  /* flex-direction: row; */
+}
+
+h1+div{
+  background: #000033;
+}
+
+li:nth-child(even){
+  background:red;
+}
+
+a[href="www.google.com"] {
+	background: white;
+}
+
+input[type=checkbox]:checked{
+  margin-left: 50px;
+}
