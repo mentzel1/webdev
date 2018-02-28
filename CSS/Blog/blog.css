@@ -1,0 +1,25 @@
+body {
+  margin: 1% auto;
+  width: 38%;
+  font-family:  'Source Sans Pro';
+  border: 20px solid #bdc3c7;
+  padding-left: 1%;
+  padding-right: 1%;
+}
+
+h1 {
+  color: #2c3e50;
+  /* padding: 2%; */
+}
+
+h4 {
+  color: #3498db;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: lighter;
+}
+
+p:nth-of-type(1) {
+  border-left: 5px solid #bdc3c7;
+  padding-left: 1%;
+}
