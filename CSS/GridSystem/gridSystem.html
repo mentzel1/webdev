@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>BootStrap Grid System</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" type="text/CSS" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="gridSystem.css">
+  </head>
+  <body>
+    <!-- contianer creates margins on both sides of the container -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>BootStrap Grid System</h1>
+        <p>
+          This is an introduction to BootStraps grid system which allows you to easily organize content on a webpage/lay things out and is automatically responsive for mobile, tablet and laptops!
+        </p>
+        <button class="btn btn-info">Learn More!</button>
+      </div>
+    </div>
+
+    <h1>This is our grid in a container:</h1>
+
+    <!-- All grid systems must be inside of a container. You have 12 units going across in each row. There are 4 sizes for our layout:
+    1. col-xs => phones
+    2. col-sm => tablets
+    3. col-md => Desktops
+    4. col-lg => Desktops
+  -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 grey"></div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 grey"></div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 grey"></div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 grey"></div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 grey"></div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 grey"></div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 grey"></div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 grey"></div>
+      </div>
+    </div>
+  </body>
+</html>

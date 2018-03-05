@@ -1,0 +1,15 @@
+body > h1{
+  color: #46466d;
+  text-align: center;
+}
+
+/* We are using specificity here to overide coloring of h1 in our jubotron */
+.jumbotron h1{
+  color: #a2a2c3;
+}
+
+.grey{
+  background-color:  #f0f0f5;
+  height: 100px;
+  border: 1px solid #33334d;
+}
