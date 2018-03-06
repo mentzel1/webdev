@@ -5,15 +5,24 @@
     <title>Travel Image Gallery</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!--Showing the latest stable release-->
+    <!--Showing the latest stable release. Must come before bootstrap javascript CDN below because the javascript relies on the the jquery-->
     <script src="https://code.jquery.com/jquery-3.3.1.js"	  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!--CDN script for latest version of Font-awesome-->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <link rel="stylesheet" type="text/css" href="imageGalleryTravel.css" />
   </head>
 
   <body>
 
+<!--NOTE:
+  1. nav colors our links in our lists "li"
+  2. navbar-nav allighns our lists "li" and removes blue link color
+  3. navbar-brand sets the main logo of the page and customizes it
+  4. navbar-default sets background color bar
+  5. collapse makes everything disapper/unseen when hit mobile size
+-->
 <!---------------------------------------------------------------------------->
   <!-- This is our fixed navigation bar at the top of our webpage -->
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -49,7 +58,7 @@
 <!-- This is our main page within a container -->
     <div class="container">
       <div class="jumbotron">
-        <h1><span class="glyphicon glyphicon-camera" aria-hidden="true"></span> Travel Image Gallery</h1>
+        <h1><i class="fas fa-camera-retro"></i> Travel Image Gallery</h1>
         <p>
           All the places one has never been but dreams of going. Let's begin the journey!
         </p>
