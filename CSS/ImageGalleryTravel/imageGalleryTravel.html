@@ -3,33 +3,53 @@
   <head>
     <meta charset="utf-8">
     <title>Travel Image Gallery</title>
-    <link rel="stylesheet" type="text/CSS" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" type="text/css" href="imageGalleryTravel.css" /> -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--Showing the latest stable release-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"	  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="imageGalleryTravel.css" />
   </head>
 
   <body>
 
-  <!-- This is our Navigation bar at the top of our webpage -->
+<!---------------------------------------------------------------------------->
+  <!-- This is our fixed navigation bar at the top of our webpage -->
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">IMGS</a>
+      <!-- IMGS and toggle get grouped for better mobile display -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#links-to-collapse-in-navbar" aria-expanded="false">
+         <span class="sr-only">Toggle navigation</span>
+         <!--Creates the three lines in our button for collapsed view -->
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+       </button>
+        <!-- This is our IMGS link with picture icon -->
+        <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> IMGS</a>
       </div>
-      <div class="nav navbar-nav">
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </div>
-      <div class="nav navbar-nav navbar-right">
-        <li><a href="#">Sign Up</a></li>
-        <li><a href="#">Login</a></li>
-      </div>
-    </div>
-  </nav>
+
+      <!-- Collect the nav links "About, Contact, Sign, Login" for toggling -->
+      <div class="collapse navbar-collapse" id="links-to-collapse-in-navbar">
+        <div class="nav navbar-nav">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </div>
+        <div class="nav navbar-nav navbar-right">
+          <li><a href="#">Sign Up</a></li>
+          <li><a href="#">Login</a></li>
+        </div>
+      </div> <!--end collapse navbar-collapse-->
+    </div> <!--end navbar container-->
+  </nav> <!--end navbar navbar-default-->
+<!----------------------------------------------------------------------------->
 
 <!-- This is our main page within a container -->
     <div class="container">
       <div class="jumbotron">
-        <h1>Travel Image Gallery</h1>
+        <h1><span class="glyphicon glyphicon-camera" aria-hidden="true"></span> Travel Image Gallery</h1>
         <p>
           All the places one has never been but dreams of going. Let's begin the journey!
         </p>
@@ -37,34 +57,49 @@
 
       <!-- Our bootstrap grid system is here within our container. We start off with 3 images on a page (12/3=4 spaces occupied), then we go down to 2 and then we stay at 2 (12/2=6 spaces occupied per image), and lastley we go doen to 1 where each image occupies 12 spaces. Images will wrap so no need to declare multiple rows but you can -->
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-sm-6 col-xs-12">
           <div class="thumbnail">
             <img src="C:\Users\mentzel1\Documents\Coding Projects\CSS\ImageGalleryTravel\images\adam-kool-11868-unsplash.jpg" />
           </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-sm-6 col-xs-12">
           <div class="thumbnail">
             <img src="C:\Users\mentzel1\Documents\Coding Projects\CSS\ImageGalleryTravel\images\anders-jilden-307322-unsplash.jpg"/>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-sm-6 col-xs-12">
           <div class="thumbnail">
             <img src="C:\Users\mentzel1\Documents\Coding Projects\CSS\ImageGalleryTravel\images\bryan-minear-317365-unsplash.jpg"/>
           </div>
         </div>
-      <div class="col-lg-4">
+      <div class="col-lg-4 col-sm-6 col-xs-12">
         <div class="thumbnail">
-          <img src="C:\Users\mentzel1\Documents\Coding Projects\CSS\ImageGalleryTravel\images\casey-horner-437634-unsplash.jpg"/>
+          <img src="C:\Users\mentzel1\Documents\Coding Projects\CSS\ImageGalleryTravel\images\yannick-pulver-180756-unsplash.jpg"/>
         </div>
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-4 col-sm-6 col-xs-12">
         <div class="thumbnail">
-          <img src="C:\Users\mentzel1\Documents\Coding Projects\CSS\ImageGalleryTravel\images\luca-bravo-523182-unsplash.jpg"/>
+          <img src="C:\Users\mentzel1\Documents\Coding Projects\CSS\ImageGalleryTravel\images\john-towner-154060-unsplash.jpg"/>
         </div>
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-4 col-sm-6 col-xs-12">
         <div class="thumbnail">
-          <img src="C:\Users\mentzel1\Documents\Coding Projects\CSS\ImageGalleryTravel\images\filip-zrnzevic-426276-unsplash.jpg"/>
+          <img src="C:\Users\mentzel1\Documents\Coding Projects\CSS\ImageGalleryTravel\images\nathan-anderson-291067-unsplash.jpg"/>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 col-xs-12">
+        <div class="thumbnail">
+          <img src="C:\Users\mentzel1\Documents\Coding Projects\CSS\ImageGalleryTravel\images\clayton-caldwell-382402-unsplash.jpg"/>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 col-xs-12">
+        <div class="thumbnail">
+          <img src="C:\Users\mentzel1\Documents\Coding Projects\CSS\ImageGalleryTravel\images\asoggetti-524812-unsplash.jpg"/>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 col-xs-12">
+        <div class="thumbnail">
+          <img src="C:\Users\mentzel1\Documents\Coding Projects\CSS\ImageGalleryTravel\images\matteo-catanese-401213-unsplash.jpg"/>
         </div>
       </div>
     </div> <!--end row-->
