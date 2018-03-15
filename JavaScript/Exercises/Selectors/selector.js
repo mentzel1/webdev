@@ -21,10 +21,20 @@ function freaky(){
   if(clicked){
     document.querySelector("p").classList.add("change");
     document.querySelector("h1").textContent= "WE CHANGED THE TITLE";
+    var img = document.querySelector("img");
+    var a = document.querySelector("a");
+    img.setAttribute("src", "https://23fb88ad5ca22a1b4d32-e1951aed44f4258f5fd1721b94cf0277.ssl.cf5.rackcdn.com/IL002-ipad.jpg")
+    a.setAttribute("href", "https://www.google.com/")
+    a.textContent ="Google Link!";
     clicked = false;
   }else{
     document.querySelector("p").classList.remove("change");
     document.querySelector("h1").textContent= "I am an h1!";
+    var img = document.querySelector("img");
+    var a = document.querySelector("a");
+    img.setAttribute("src", "https://23fb88ad5ca22a1b4d32-e1951aed44f4258f5fd1721b94cf0277.ssl.cf5.rackcdn.com/IL002-ipad.jpg")
+    a.setAttribute("href", "http://illinois.edu/")
+    a.textContent = "Illinois Website";
     clicked = true;
   }
   document.querySelector("button").classList.toggle("button");
