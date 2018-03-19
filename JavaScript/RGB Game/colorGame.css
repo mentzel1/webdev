@@ -1,0 +1,66 @@
+.banner{
+  background: #538CC6;
+  color: white;
+  text-align: center;
+  margin: 0;
+}
+
+.subBanner{
+  background-color: white;
+  padding-bottom: 2%;
+}
+
+.results{
+  color: black;
+}
+
+.square{
+  width: 30%;
+  background: purple;
+  padding-bottom: 30%;
+  float: left;
+  margin: 1.66%;
+  border-radius: 30px;
+}
+
+.box-container{
+  max-width: 600px;
+  /* 0 margin top and bottom, auto side to side so it is the same on both sides */
+  margin: 0 auto;
+}
+
+body{
+  background: #14141f;
+  margin: 0;
+}
+
+h3{
+  margin: 0px;
+}
+
+h1{
+  margin: 0px;
+}
+
+/* ________________________________________________________________________________ */
+
+/* If you want to use percentages to specify height and width, you need to set the height and width of the parent elements in terms of percentages. HTML and body would be 100% since that is the main webpage.  We also need to set the "box-container" width and height since it is the parent element of our "square" class. We want it to only take up half the webpage and be centered*/
+/* .box-container{
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+body, html{
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+  background: #14141f;
+}
+
+.square{
+  width: 30%;
+  background: purple;
+  border: 1px solid black;
+  height: 30%
+  */
