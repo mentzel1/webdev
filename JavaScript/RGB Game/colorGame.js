@@ -63,8 +63,7 @@ function randSquareColors(num){
 
 //Picks color at random from generated squares, returns as string
 function colorPicker(numColors){
-  var color = squares[Math.floor(Math.random()*numColors)].style.backgroundColor;
-  return color;
+  return squares[Math.floor(Math.random()*numColors)].style.backgroundColor;
 }
 
 //Generates a random RGB color and returns it as a string
@@ -72,10 +71,7 @@ function randColor(){
   var red = Math.floor(Math.random() * 256);
   var green = Math.floor(Math.random() * 256);
   var blue = Math.floor(Math.random() * 256);
-  var color = "RGB(" + red + ", " + green + ", " + blue +")";
-  console.log("color: " + color);
-  // console.log(color);
-  return color;
+  return "RGB(" + red + ", " + green + ", " + blue +")";
 }
 
 // Method checks if clicked square is correct solution, if not, removes square by setting background to same color as the body. If it is correct, Shows "Correct!" on banner, then banner color and all other sqaures become that color. Game ends, user can play again by clicking buttons
