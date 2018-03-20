@@ -3,30 +3,44 @@
   color: white;
   text-align: center;
   margin: 0;
+  font-family: "Montserrat", "Avenir";
+  padding: 20px 0;
 }
 
 .subBanner{
   background-color: white;
-  padding-bottom: 2%;
+  height: 30px;
+  text-align: center;
 }
 
 .results{
   color: black;
+  display: inline-block;
+  width: 20%;
 }
 
 .square{
   width: 30%;
-  background: purple;
+  background: #14141f;
   padding-bottom: 30%;
   float: left;
   margin: 1.66%;
   border-radius: 30px;
+  transition: background 1.0s;
+  /* Browser support for transition property */
+  -webkit-transition: background 1.0s;
+  -moz-transition: background 1.0s;
 }
 
 .box-container{
   max-width: 600px;
   /* 0 margin top and bottom, auto side to side so it is the same on both sides */
-  margin: 0 auto;
+  margin: 20px auto;
+}
+
+.selected{
+  background-color: #538CC6;
+  color: white;
 }
 
 body{
@@ -36,12 +50,33 @@ body{
 
 h3{
   margin: 0px;
+  font-weight: lighter;
 }
 
 h1{
   margin: 0px;
+  font-weight: 100;
+  font-size: 400%;
 }
 
+button{
+  background-color: white;
+  border: none;
+  height: 100%;
+  font-weight: 700;
+  color: #538CC6;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  /* Gets rid of border outline when buttons clicked on */
+  outline: none;
+}
+
+button:hover{
+  color:white;
+  background: #538CC6;
+}
 /* ________________________________________________________________________________ */
 
 /* If you want to use percentages to specify height and width, you need to set the height and width of the parent elements in terms of percentages. HTML and body would be 100% since that is the main webpage.  We also need to set the "box-container" width and height since it is the parent element of our "square" class. We want it to only take up half the webpage and be centered*/
