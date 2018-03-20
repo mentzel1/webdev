@@ -15,9 +15,9 @@ var pickedColor;
 initGame();
 
 
-// Add event listeners
+// Add event listeners for all buttons
 for(var i=0; i<squares.length; i++){
-  squares[i].addEventListener("click", clickedSquare);
+  squares[i].addEventListener("click", clickedSquareChecker);
 }
 reset.addEventListener("click", initGame);
 hard.addEventListener("click", function(){
@@ -29,6 +29,7 @@ easy.addEventListener("click", function(){
   resetGame(numGame);
 })
 
+//Resets the game by regenerating random squares for current game mode selected (easy or hard) and clearing display
 function resetGame(gameType){
   if(gameType === numEasy){
     hard.classList.remove("selected");
@@ -45,12 +46,12 @@ function resetGame(gameType){
   reset.textContent = "NEW COLORS";
 }
 
-//Initializes the game using reset
+//Initializes the game using reset which sets squares and default buttons and display screen
 function initGame(){
   resetGame(numGame);
 }
 
-//Generates Specified number of colored squares
+//Generates Specified number of colored squares by coloring in set "num" if squares with a random color and all other squares are set to background color so they are removed
 function randSquareColors(num){
   for(var i=0; i<squares.length; i++){
     if(i < num){
@@ -75,8 +76,7 @@ function randColor(){
 }
 
 // Method checks if clicked square is correct solution, if not, removes square by setting background to same color as the body. If it is correct, Shows "Correct!" on banner, then banner color and all other sqaures become that color. Game ends, user can play again by clicking buttons
-function clickedSquare(){
-  console.log("clicked square background color" + this.style.backgroundColor);
+function clickedSquareChecker(){
   if( this.style.backgroundColor === pickedColor){
     for(var i=0; i<numGame; i++){
       squares[i].style.backgroundColor = pickedColor;
