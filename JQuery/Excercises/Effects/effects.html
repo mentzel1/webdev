@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Effects in Jquery</title>
+    <script type="text/javascript"
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+  <style>
+    div{
+      height: 200px;
+      width: 200px;
+      float: left;
+      background: pink;
+      margin: 50px;
+      padding: 20px;
+    }
+    button{
+      float: left;
+    }
+    h1{
+      display: none;
+    }
+    .fadeToggle{
+      width: 50%;
+      background-color: #e0fde0;
+    }
+    .sliding{
+      height: 200px;
+      width: 50%;
+      background-color: #FFFFE0;
+    }
+  </style>
+  </head>
+  <body>
+    <h1>Effects in JQuery!</h1>
+    <p class="fadeToggle">
+      We are going to toggle fading this in and out each time we click a button.
+    </p>
+    <p class="sliding">
+      We are going to slide in this text here.
+    </p>
+
+    <button>Click Me!</button>
+
+    <div>Div1</div>
+    <div>Div2</div>
+    <div>Div3</div>
+    <script type="text/javascript" src="effects.js"></script>
+  </body>
+</html>
