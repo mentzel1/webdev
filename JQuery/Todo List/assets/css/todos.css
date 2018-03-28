@@ -1,0 +1,32 @@
+h1{
+  margin: 0px 0px 0px 0px;
+  background-color: rgb(187, 208, 247);
+  padding: 7px;
+}
+
+body{
+  margin-top: 10%;
+}
+
+input{
+  margin: none;
+  border: none;
+  width: 360px;
+}
+ul{
+  list-style: none;
+  padding: 0px 0px 0px 10px;
+  margin: 0px;
+}
+
+.container{
+  margin: 0 auto;
+  width: 360px;
+  background-color: rgb(245,245,245);
+  /* padding: 20px; */
+}
+
+.completed{
+  color: rgb(214, 214, 220);
+  text-decoration: line-through;
+}
