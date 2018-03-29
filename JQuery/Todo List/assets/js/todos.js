@@ -1,3 +1,5 @@
+//NOTE: You have to use .on() here because it will set listeners for all future items you add to your todo list. Futhermore, you have to specify element through parent which is always on the html wepage (as "ul" is here. we will never delete the "ul"). So we want events to be set on all "li" inside the "ul" and all "span" inside "ul."
+
 //Clicking on a todo item checks and unchecks the item
 $("ul").on("click", "li", function(){
   console.log("LI");
@@ -5,12 +7,12 @@ $("ul").on("click", "li", function(){
 });
 
 //Clicking on delete marker deletes the todo item
-$("span").on("click", function(event){
+$("ul").on("click", "span", function(event){
   console.log("SPAN");
   $(this).parent().fadeOut(500, function(){
     $(this).remove();
   });
-  //Stop propagation (executing parent event listeners)
+  //Stop propagation (executing parent event listeners aka li here)
   event.stopPropagation();
 });
 
@@ -20,7 +22,7 @@ $("input[type='text']").on("keypress", function(event){
   var todoItem = $("input").val();
   //Pressing enter adds item to beggining of list, clears input
   if(event.which === 13){
-    $("ul").append("<li><span>X</span> " + todoItem + "</li>");
+    $("ul").append('<li><span><i class="fas fa-trash-alt"></i></span> ' + todoItem + "</li>");
     $("input").val("");
   }
 });

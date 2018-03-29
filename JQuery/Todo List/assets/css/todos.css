@@ -1,29 +1,73 @@
 h1{
   margin: 0px 0px 0px 0px;
   background-color: rgb(187, 208, 247);
-  padding: 7px;
-}
-
-body{
-  margin-top: 10%;
+  padding: 10px 20px;
+  color: white;
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 400;
 }
 
 input{
   margin: none;
   border: none;
-  width: 360px;
+  width: 100%;
+  padding: 13px 12px 13px 20px;
+  font-size: 18px;
+  /* size same as parent but includes margins and padding */
+  box-sizing: border-box;
+  color: rgb(187, 208, 247);
 }
+
+input:focus{
+  border: 3px solid rgb(187, 208, 247);
+  /* removes select highlight */
+  outline: none;
+}
+
 ul{
   list-style: none;
-  padding: 0px 0px 0px 10px;
+  padding: 0px;
   margin: 0px;
 }
 
+body{
+  font-family: 'Roboto', sans-serif;
+  background: #8e9eab;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #eef2f3, #8e9eab);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #eef2f3, #8e9eab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+li:nth-child(2n){
+  background-color: white;
+}
+
+span{
+  background-color: rgb(255, 77, 77);
+  color: white;
+  margin-right: 20px;
+  height: 40px;
+  width: 40px;
+  display: inline-block;
+  text-align: center;
+}
+
+li{
+  height: 40px;
+  color: #666;
+  line-height: 40px;
+}
+
+.fa-plus{
+  float: right;
+}
+
 .container{
-  margin: 0 auto;
+  margin: 100px auto;
   width: 360px;
   background-color: rgb(245,245,245);
-  /* padding: 20px; */
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
 .completed{
