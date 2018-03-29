@@ -22,7 +22,17 @@ $("input[type='text']").on("keypress", function(event){
   var todoItem = $("input").val();
   //Pressing enter adds item to beggining of list, clears input
   if(event.which === 13){
-    $("ul").append('<li><span><i class="fas fa-trash-alt"></i></span> ' + todoItem + "</li>");
-    $("input").val("");
+    if(todoItem.length < 31){
+      $("ul").append('<li><span><i class="fas fa-trash-alt"></i></span> ' + todoItem + "</li>");
+      $("input").val("");
+    }else{
+        alert("Your todo item is too long!");
+        $("input").val("");
+    }
   }
+});
+
+//Toggles input field when plus icon clicked
+$("#plus").on("click", function(){
+  $("input").fadeToggle(200);
 });

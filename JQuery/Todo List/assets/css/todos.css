@@ -43,7 +43,7 @@ li:nth-child(2n){
   background-color: white;
 }
 
-span{
+li span{
   background-color: rgb(255, 77, 77);
   color: white;
   margin-right: 20px;
@@ -55,7 +55,7 @@ span{
   opacity: 0;
 }
 
-span:hover{
+li span:hover{
   width: 40px;
   opacity: 1.0;
 }
@@ -66,7 +66,7 @@ li{
   line-height: 40px;
 }
 
-.fa-plus{
+#plus{
   float: right;
 }
 
