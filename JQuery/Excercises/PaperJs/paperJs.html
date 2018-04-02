@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>PaperJS Exercise</title>
+    <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="paper-full.min.js"></script>
+    <script type="text/paperscript" canvas="mycanvas">
+      // var pageWidth = document.getElementsByTagName("BODY")[0].clientWidth
+      // var pageHeight = document.getElementsByTagName("BODY")[0].clientHeight
+      var pageWidth = $("html").width();
+      var pageHeight = $("html").height();
+
+
+      for(var i = 0; i < pageWidth; i+=100){
+        for(var j = 0; j < pageHeight; j+=100){
+          new Path.Circle(new Point(i, j), 10);
+          var r = Math.random();
+          var g = Math.random();
+          var b = Math.random();
+          // console.log("("+r+","+" "+g+", "+g+")");
+          myCircle.fillColor = new Color (r, g, b);
+        }
+      }
+
+    </script>
+    <link type="text/css" rel="stylesheet" href="paperJs.css" />
+  </head>
+  <body>
+    <canvas id="mycanvas" resize></canvas>
+  </body>
+</html>
