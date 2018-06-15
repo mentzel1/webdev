@@ -1,0 +1,16 @@
+<h1>This is the POSTS page!</h1>
+
+<h3>Presenting the following posts:</h3>
+
+<% for(var i = 0; i < posts.length; i++){ %>
+  <li>
+    <%= posts[i].title %> - <strong><%= posts[i].author %></strong>
+  </li>
+<% } %>
+
+<h3>Using a ForEach loop here!!</h3>
+<% posts.forEach(function(post){ %>
+  <li>
+    <%= post.title %> - <strong><%= post.author %></strong>
+  </li>
+<% }); %>
