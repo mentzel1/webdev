@@ -1,13 +1,27 @@
 <% include partials/header %>
-<h1>Campgound Listing!</h1>
 
-<ul>
-  <% campgrounds.forEach(function(campground){ %>
-    <div>
-      <h3> <%= campground.name %> </h5>
-      <img src="<%= campground.img %>">
+<div class="container">
+  <div class="jumbotron">
+    <h1>Welcome to YelpCamp!</h1>
+    <hr class = "my-4" />
+    <p>Explore various campsite locations across the U.S and share your own favorite sites!</p>
+    <a class="btn btn-primary btn-lg-secondary" href="/campgrounds/new" role="button">Add Campground</a>
+  </div>
+
+  <!-- For each new site, want to add a column (4/12 units wide then 6 then 12) -->
+  <div class = "container">
+    <div class = "row text-center" style="display:flex; flex-wrap:wrap">
+      <% campgrounds.forEach(function(campground){ %>
+        <div class = "col-lg-3 col-sm-6">
+          <div class="thumbnail rounded">
+            <img src="<%= campground.img %>">
+            <caption><h3><%= campground.name %> </h3></caption>
+          </div>
+        </div>
+      <% }); %>
     </div>
-  <% }); %>
-</ul>
+  </div>
+
+</div> <!-- main outside container -->
 
 <% include partials/footer %>
