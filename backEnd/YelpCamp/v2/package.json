@@ -1,0 +1,18 @@
+{
+  "name": "yelpcamp",
+  "version": "1.0.0",
+  "description": "Camping App",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "request": "^2.87.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jacky Mentzel",
+  "license": "ISC"
+}

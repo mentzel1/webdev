@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Yelp Camp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <!--Showing the latest stable release. Must come before bootstrap javascript CDN below because the javascript relies on the the jquery-->
+   <script src="https://code.jquery.com/jquery-3.3.1.js"	  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+   <!-- Latest compiled and minified JavaScript (requires jquery and e need this javascript in order for the toggle menue in our navbar to work) -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <!--Creates the three lines in our button for collapsed view -->
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">YelpCamp</a>
+        </div> <!---end navbar-header--->
+
+         <!-- Collect the nav links "Login, Signup, logout" for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+           <li><a href="/">Login</a></li>
+           <li><a href="/">Sign Up</a></li>
+           <li><a href="/">Log Out</a></li>
+          </ul>
+         </div> <!--end collapse navbar-collapse-->
+      </div> <!-- container fluid end -->
+    </nav> <!--end navbar navbar-default-->
