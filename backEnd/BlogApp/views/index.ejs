@@ -1,5 +1,15 @@
 <% include partials/header %>
 
-<h1>JackJack's Blog Page!</h1>
+<div class="ui raised very padded text container segment">
+  <h1>JackJack's Blog Page!</h1>
+  <hr />
+  <!-- Populate blogs -->
+  <% blogs.forEach(function(blog){%>
+    <h3><%= blog.title%></h3>
+    <img src="<%=blog.image%>"/>
+    <p><%=blog.body%></p>
+    <p><%=blog.date%></p>
+  <%});%>
+</div>
 
 <% include partials/footer %>
