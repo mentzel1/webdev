@@ -34,9 +34,9 @@ Campgrounds.create(
     console.log("Error with intializing database!");
     console.log(err);
   }else{
-    console.log(c1);
-    console.log(c2);
-    console.log(c3);
+    // console.log(c1);
+    // console.log(c2);
+    // console.log(c3);
   }
 });
 
@@ -52,7 +52,7 @@ app.get("/", function(req, res){
 });
 
 //Displays a list of all campgrounds
-app.get("/index", function(req, res){
+app.get("/campgrounds", function(req, res){
   Campgrounds.find({}, function(err, campgroundsUpdated){
     if(err){
       console.log("No Campgrounds found. ERROR!");
@@ -64,12 +64,12 @@ app.get("/index", function(req, res){
 });
 
 //Shows form to create new campground
-app.get("/index/new", function(req, res){
+app.get("/campgrounds/new", function(req, res){
   res.render("new");
 });
 
 //Creates new camgrounds and redirects to display camp listing
-app.post("/index", function(req, res){
+app.post("/campgrounds", function(req, res){
   //Store new campground information
   var campName = req.body.name;
   var campUrl = req.body.img;
@@ -86,12 +86,12 @@ app.post("/index", function(req, res){
       console.log(err);
     }else{
       //redirect is get by default
-      res.redirect("/index");
+      res.redirect("/campgrounds");
     }
   });
 });
 
-app.get("/index/:id", function(req, res){
+app.get("/campgrounds/:id", function(req, res){
   //lookup campground with this id to display its info
   // console.log(req);
   var campID = req.params.id;

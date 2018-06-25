@@ -5,7 +5,7 @@
     <h1>Welcome to YelpCamp!</h1>
     <hr class = "my-4" />
     <p>Explore various campsite locations across the U.S and share your own favorite sites!</p>
-    <a class="btn btn-primary btn-lg-secondary" href="/index/new" role="button">Add Campground</a>
+    <a class="btn btn-primary btn-lg-secondary" href="/campgrounds/new" role="button">Add Campground</a>
   </div>
 
   <!-- For each new site, want to add a column (4/12 units wide then 6 then 12) -->
@@ -16,7 +16,7 @@
           <div class="thumbnail rounded">
             <img src="<%= campground.img %>">
             <caption><h3><%= campground.name %> </h3></caption>
-            <a class="btn btn-primary btn-lg-secondary" href="/index/<%=campground._id%>" role="button">Details</a>
+            <a class="btn btn-primary btn-lg-secondary" href="/campgrounds/<%=campground._id%>" role="button">Details</a>
           </div>
         </div>
       <% }); %>
