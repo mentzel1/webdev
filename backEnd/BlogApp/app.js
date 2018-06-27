@@ -100,8 +100,7 @@ app.put("/blogs/:id", function(req, res){
 
 //"DELETE" route removes a particular blog, then redirects
 app.delete("/blogs/:id", function(req, res){
-  res.send("YAYA");
-  Blog.deleteOne(req.params.body, function(err){
+  Blog.findByIdAndRemove(req.params.id, function(err){
     if(err){
       res.redirect("/blogs");
     }else{

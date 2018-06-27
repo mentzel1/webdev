@@ -7,10 +7,8 @@
   </div>
   <p><%=blog.date.toDateString()%></p>
   <p><%=blog.body%></p>
-  <form action="/blogs/<%= blog._id%>/edit" method="GET">
-    <button class="ui instagram button">Edit Blog</button>
-  </form>
-  <form action="/blogs/<%= blog._id%>?_method=delete" medthod="POST">
+  <a type="button" href="/blogs/<%= blog._id%>/edit" class="ui instagram button">Edit Blog</a>
+  <form id="delete" action="/blogs/<%=blog._id%>?_method=DELETE" method="POST">
     <button class="ui youtube button">DELETE</button>
   </form>
 </div>
