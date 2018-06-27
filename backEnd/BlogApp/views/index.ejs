@@ -5,10 +5,22 @@
   <hr />
   <!-- Populate blogs -->
   <% blogs.forEach(function(blog){%>
-    <h3><%= blog.title%></h3>
-    <img src="<%=blog.image%>"/>
-    <p><%=blog.body%></p>
-    <p><%=blog.date%></p>
+  <div class="ui items">
+    <div class="item">
+      <div class="ui small image">
+        <img class="ui small rounded left floated image imgIndex" src="<%=blog.image%>"/>
+      </div>
+    <div class="content">
+      <div class="header"><%= blog.title%></div>
+      <div class="meta">
+        <span class="stay"><%=blog.date.toDateString()%></span>
+      </div>
+      <div class="description">
+        <p><%=blog.body.substring(0, 300)%></p>
+      </div>
+    </div>
+  </div>
+      <a class="ui secondary button" href="/blogs/<%=blog._id%>">Read More</a>
   <%});%>
 </div>
 

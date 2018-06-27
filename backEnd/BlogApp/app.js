@@ -2,6 +2,10 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var methodOverride = require("method-override");
+
+//Override with POST having ?_method=put
+app.use(methodOverride("_method"));
 
 //APPLICATION SETUP
 
@@ -58,6 +62,53 @@ app.post("/blogs", function(req, res){
     }
   });
 });
+
+//"SHOW" route shows details about a specific blogs
+app.get("/blogs/:id", function(req, res){
+  //Get specific blog through ID
+  Blog.findById(req.params.id, function(err, blog){
+    if(err){
+      res.redirect("blogs");
+    }else{
+      res.render("show", {blog: blog});
+    }
+  });
+});
+
+//"EDIT" route shows edit form for one blogs
+app.get("/blogs/:id/edit", function(req, res){
+  Blog.findById(req.params.id, function(err, foundBlog){
+    if(err){
+      res.redirect("/blogs");
+    }else{
+      res.render("edit", {blog: foundBlog});
+    }
+  });
+});
+
+//"UPDATE" route updates a particular blog, then redirects to blog Page
+app.put("/blogs/:id", function(req, res){
+    //Update databse with new update blog
+  Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
+    if(err){
+      res.redirect("/blogs");
+    }else{
+      res.redirect("/blogs/"+req.params.id);
+    }
+  });
+});
+
+//"DELETE" route removes a particular blog, then redirects
+app.delete("/blogs/:id", function(req, res){
+  res.send("YAYA");
+  Blog.deleteOne(req.params.body, function(err){
+    if(err){
+      res.redirect("/blogs");
+    }else{
+      res.redirect("/blogs");
+    }
+  });
+})
 
 //Start node server
 app.listen(3000, function(){
