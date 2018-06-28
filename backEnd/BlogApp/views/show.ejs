@@ -6,7 +6,8 @@
       <img src="<%=blog.image%>" class="ui centered fluid image"/>
   </div>
   <p><%=blog.date.toDateString()%></p>
-  <p><%=blog.body%></p>
+  <!-- Replace all newline "\r\n" with HTML bracket for new line, then show unescaped html using "-" instead of escaped html value using "=" -->
+  <p><%-blog.body.replace(/\r\n/g, "<br>");%></p>
   <a type="button" href="/blogs/<%= blog._id%>/edit" class="ui instagram button">Edit Blog</a>
   <form id="delete" action="/blogs/<%=blog._id%>?_method=DELETE" method="POST">
     <button class="ui youtube button">DELETE</button>

@@ -16,7 +16,7 @@
         <span class="stay"><%=blog.date.toDateString()%></span>
       </div>
       <div class="description">
-        <p><%=blog.body.substring(0, 300)%></p>
+        <p><%-blog.body.replace(/\r\n/g, "<br>").substring(0, 300)%></p>
       </div>
     </div>
   </div>
