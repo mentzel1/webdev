@@ -17,10 +17,12 @@
       </div>
       <div class="description">
         <p><%-blog.body.replace(/\r\n/g, "<br>").substring(0, 300)%></p>
+        <div id = "main_button">
+          <a class="ui secondary button" href="/blogs/<%=blog._id%>">Read More</a>
+        </div>
       </div>
     </div>
   </div>
-      <a class="ui secondary button" href="/blogs/<%=blog._id%>">Read More</a>
   <%});%>
 </div>
 

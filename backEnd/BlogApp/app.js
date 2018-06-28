@@ -5,6 +5,7 @@ var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var methodOverride = require("method-override");
+var expressSanitizer = require("express-sanitizer");
 
 //APPLICATION SETUP
 //=================================================
@@ -14,6 +15,8 @@ app.use(methodOverride("_method"));
 app.use(express.static("public"));
 //Allows extraction of data from forms
 app.use(bodyParser.urlencoded({extended: true}));
+//Mount sanitizer to remove scripts from html input (prevent html injection)
+app.use(expressSanitizer());
 //Do not have to add ejs file extension
 app.set("view engine", "ejs");
 //Connect to mongoDB database for BlogApp
@@ -51,6 +54,11 @@ app.get("/blogs/new", function(req, res){
 });
 //"CREATE" adds new blog post to database
 app.post("/blogs", function(req, res){
+  console.log(req.body);
+  console.log("======================")
+  //Replace an HTTP posted body property with the sanitized String
+  req.body.blog.body = req.sanitize(req.body.blog.body);
+  console.log(req.body);
   Blog.create(req.body.blog, function(err, newBlog){
     if(err){
       res.redirect("/blogs/new");
@@ -85,7 +93,9 @@ app.get("/blogs/:id/edit", function(req, res){
 
 //"UPDATE" route updates a particular blog, then redirects to blog Page
 app.put("/blogs/:id", function(req, res){
-    //Update databse with new update blog
+  //Replace an HTTP posted body property with the sanitized String
+  req.body.blog.body = req.sanitize(req.body.blog.body);
+  //Update databse with new update blog
   Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
     if(err){
       res.redirect("/blogs");

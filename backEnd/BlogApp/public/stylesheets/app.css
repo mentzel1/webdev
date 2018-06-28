@@ -11,3 +11,8 @@ hr {
 #delete {
   display: inline;
 }
+
+#main_button {
+  text-align: left;
+  padding-top: 10px;
+}
