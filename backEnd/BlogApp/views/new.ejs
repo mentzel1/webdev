@@ -5,15 +5,15 @@
   <form class="ui form" action="/blogs" method="POST">
     <div class="field">
       <label>Title</label>
-      <input name="blog[title]" placeholder="Title" type="text">
+      <input name="blog[title]" placeholder="Title" type="text" maxlength="20" required>
     </div>
     <div class="field">
       <label>Image</label>
-      <input name="blog[image]" placeholder="Image URL" type="text">
+      <input name="blog[image]" placeholder="Image URL" type="url" required>
     </div>
     <div class="field">
       <label>Blog Post</label>
-      <textarea name="blog[body]" placeholder="Enter text"></textarea>
+      <textarea name="blog[body]" placeholder="Enter text" required></textarea>
     </div>
     <button class="ui blue basic button" type="submit">Submit</button>
   </form>

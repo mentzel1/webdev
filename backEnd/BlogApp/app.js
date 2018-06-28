@@ -54,11 +54,8 @@ app.get("/blogs/new", function(req, res){
 });
 //"CREATE" adds new blog post to database
 app.post("/blogs", function(req, res){
-  console.log(req.body);
-  console.log("======================")
   //Replace an HTTP posted body property with the sanitized String
   req.body.blog.body = req.sanitize(req.body.blog.body);
-  console.log(req.body);
   Blog.create(req.body.blog, function(err, newBlog){
     if(err){
       res.redirect("/blogs/new");
