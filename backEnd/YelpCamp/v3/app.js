@@ -5,7 +5,16 @@ var mongoose = require("mongoose");
 var Campgrounds = require("./models/campground.js")
 var seedDB = require("./seeds.js");
 var Comment = require("./models/comment.js");
+var User = require("./models/user.js");
+var passport = require("passport");
+var localStrategy = require("passport-local");
+var session = require("express-session");
 
+var authRouter = require("./routes/auth.js");
+var commentsRouter = require("./routes/comments.js");
+var campgroundRouter = require("./routes/campgrounds.js");
+
+//Fill database with temp data to test app
 seedDB();
 
 //Connect to mongoDB database
@@ -14,105 +23,41 @@ mongoose.connect("mongodb://localhost/yelpcamp");
 //parses url encoded data, needed for forms
 app.use(bodyParser.urlencoded({extended: true}));
 
+//Tell node to use public directory
+app.use(express.static(__dirname + "/public"));
+
 //Do not require ejs extension in file names
 app.set("view engine", "ejs");
 
-//Main page
-app.get("/", function(req, res){
-  res.render("landing");
+//===PASSPORT CONFIGURATION=======
+//Tell express to use session
+app.use(session({
+  secret: "Kitty is a sweet, cute, evil, little cat that I love!",
+  resave: false,
+  saveUninitialized: false
+}));
+//To use passport in express you need this
+app.use(passport.initialize());
+//For apps using persistant login sessions this is reccommended but not required
+app.use(passport.session());
+//Tell passport to use your user models authenticate method from localStrategy
+passport.use(new localStrategy(User.authenticate()));
+//Tell passport to use your user models serialize and desearialize methods for session support. When starting session this will serialize the user ID, and when ending session, finding the user by ID and desearializing.
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+//Make current user avaliable to all routes (so we do not have to add it manually to each route)
+app.use(function(req, res, next){
+  res.locals.user = req.user;
+  next();
 });
 
-//INDEX: Displays a list of all campgrounds
-app.get("/campgrounds", function(req, res){
-  Campgrounds.find({}, function(err, campgroundsUpdated){
-    if(err){
-      console.log("No Campgrounds found. ERROR!");
-      console.log(err);
-    }else{
-      res.render("campgrounds/index", {campgrounds: campgroundsUpdated});
-    }
-  });
-});
-
-//NEW: Displays form to create new campground
-app.get("/campgrounds/new", function(req, res){
-  res.render("campgrounds/new");
-});
-
-//CREATE: Creates new camgrounds, adds to our database and redirects to display camp listing
-app.post("/campgrounds", function(req, res){
-  //Store new campground information
-  var campName = req.body.name;
-  var campUrl = req.body.img;
-  var campDes = req.body.description;
-  var newCamp = {
-    name: campName,
-    img: campUrl,
-    description: campDes
-  };
-  //Add campground infor to our database
-  Campgrounds.create(newCamp, function(err, campground){
-    if(err){
-      console.log("Error adding newly created campground!");
-      console.log(err);
-    }else{
-      //redirect is get by default
-      res.redirect("/campgrounds");
-    }
-  });
-});
-
-//SHOW: Displays infor about one campground
-app.get("/campgrounds/:id", function(req, res){
-  //lookup campground with this id to display its info
-  var campID = req.params.id;
-Campgrounds.findById(campID).populate("comment").exec(function(err, camp){
-  if(err){
-    console.log("Camp not found!");
-  }else{
-    res.render("campgrounds/show", {campground: camp});
-    }
-  });
-
-});
-
-//NEW - COMMENTS Displays form to make a new comment for specific campground, AKA NESTED ROUTES
-app.get("/campgrounds/:id/comments/new", function(req, res){
-  var campID = req.params.id;
-Campgrounds.findById(campID).populate("comment").exec(function(err, camp){
-  if(err){
-    console.log("Camp not found!");
-    res.redirect("/");
-  }else{
-    res.render("comments/new", {campground: camp});
-    }
-  });
-});
-
-//CREATE-COMMENT Adds new comment to database and redirects to the campground detail page
-app.post("/campgrounds/:id/comments", function(req, res){
-  Campgrounds.findById(req.params.id, function(err, campground){
-    if(err){
-      console.log("Camp not found!");
-      res.redirect("/campgrounds");
-    }else{
-      //Create comments
-      Comment.create(req.body.comment, function(err, comment){
-        if(err){
-          console.log(err);
-          res.redirect("/camgrpunds");
-        }else{
-          //Add new comment to campgrounds
-          campground.comment.push(comment);
-          //Save updates to campgrounds
-          campground.save();
-          //Redirect to detail campground page
-          res.redirect("/campgrounds/" + campground._id)
-        }
-      });
-    }
-  });
-});
+//================================
+//             ROUTES
+//================================
+//Include ROUTES (why do these have to be at the end??beacuse the "user listed above is not avaliable yet, so need routes after this")
+app.use(authRouter);
+app.use(campgroundRouter);
+app.use(commentsRouter);
 
 app.listen(3000, function(){
   console.log("YelpCamp Server is Starting!")
