@@ -9,7 +9,14 @@ var campgroundSchema = new mongoose.Schema({
   comment: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Comment"
-  }]
+  }],
+  author: {
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    },
+  username: String
+  }
 });
 
 //Create campground model (aka create DB collection of type campgroundSchema) and export it

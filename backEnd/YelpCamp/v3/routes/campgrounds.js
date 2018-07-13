@@ -39,9 +39,15 @@ router.post("/campgrounds", isLoggedIn, function(req, res){
   var newCamp = {
     name: campName,
     img: campUrl,
-    description: campDes
+    description: campDes,
+    //User has to be logged on, therefore req.user exists here
+    author:{
+      id: req.user._id,
+      username: req.user.username
+    }
   };
-  //Add campground infor to our database
+
+  //Add campground into to our database
   Campgrounds.create(newCamp, function(err, campground){
     if(err){
       console.log("Error adding newly created campground!");
