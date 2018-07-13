@@ -15,7 +15,7 @@ var commentsRouter = require("./routes/comments.js");
 var campgroundRouter = require("./routes/campgrounds.js");
 
 //Fill database with temp data to test app
-seedDB();
+// seedDB();
 
 //Connect to mongoDB database
 mongoose.connect("mongodb://localhost/yelpcamp");

@@ -27,13 +27,13 @@
           <a role="button" class="btn btn-success btn-lg-secondary" href="/campgrounds/<%=campground._id%>/comments/new">New Comment</a>
         </div>
         <hr />
-        <% campground.comment.forEach(function(data){ %>
+        <% campground.comment.forEach(function(comment){ %>
           <div class="row">
             <div class="col-md-12">
-              <strong>Author: <%= data.author %></strong>
+
+              <strong>Author: <%=comment.author.username%></strong>
               <span class="pull-right">10 Days ago</span>
-              <p><%-data.text.replace(/\r\n/g, "<br>");%></p>
-              <!-- <p><%= data.text %></p> -->
+              <p><%-comment.text.replace(/\r\n/g, "<br>");%></p>
             </div>
           </div>
         <% }); %>

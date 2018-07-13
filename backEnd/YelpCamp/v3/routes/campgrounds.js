@@ -26,12 +26,12 @@ router.get("/campgrounds", function(req, res){
 });
 
 //NEW: Displays form to create new campground
-router.get("/campgrounds/new", function(req, res){
+router.get("/campgrounds/new", isLoggedIn, function(req, res){
   res.render("campgrounds/new");
 });
 
 //CREATE: Creates new camgrounds, adds to our database and redirects to display camp listing
-router.post("/campgrounds", function(req, res){
+router.post("/campgrounds", isLoggedIn, function(req, res){
   //Store new campground information
   var campName = req.body.name;
   var campUrl = req.body.img;

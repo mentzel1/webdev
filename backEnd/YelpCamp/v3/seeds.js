@@ -28,31 +28,31 @@ function seedDB(){
           console.log(err);
         }else{
           console.log("Removed Comment!");
-          //Add dummy campground database
-          data.forEach(function(camp){
-            Campgrounds.create(camp, function(err, newCamp){
-              if(err){
-                console.log(err);
-              }else{
-                console.log("Added a campground");
-                //Add comments to campgrounds
-                Comment.create({
-                  text: "Wow, this place was amazing! Definietly need to bring some bug spray next time though. Way too  many bugs!",
-                  author: "Jack Ripe"
-                }, function(err, newComment){
-                  if(err){
-                    console.log(err);
-                  }else{
-                    //Add comment to campground
-                    newCamp.comment.push(newComment);
-                    //Save new campground with comment to database in MongoDB
-                    newCamp.save();
-                    console.log("Comment created!");
-                  }
-                });
-              }
-            });
-          });
+          // //Add dummy campground database
+          // data.forEach(function(camp){
+          //   Campgrounds.create(camp, function(err, newCamp){
+          //     if(err){
+          //       console.log(err);
+          //     }else{
+          //       console.log("Added a campground");
+          //       //Add comments to campgrounds
+          //       Comment.create({
+          //         text: "Wow, this place was amazing! Definietly need to bring some bug spray next time though. Way too  many bugs!",
+          //         author: "Jack Ripe"
+          //       }, function(err, newComment){
+          //         if(err){
+          //           console.log(err);
+          //         }else{
+          //           //Add comment to campground
+          //           newCamp.comment.push(newComment);
+          //           //Save new campground with comment to database in MongoDB
+          //           newCamp.save();
+          //           console.log("Comment created!");
+          //         }
+          //       });
+          //     }
+          //   });
+          // });
         }
       });
     }

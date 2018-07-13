@@ -30,8 +30,13 @@ router.post("/campgrounds/:id/comments", isLoggedIn, function(req, res){
       Comment.create(req.body.comment, function(err, comment){
         if(err){
           console.log(err);
-          res.redirect("/camgrpunds");
+          res.redirect("/campgrounds");
         }else{
+          //Add user info to comment
+          comment.author.id = req.user._id;
+          comment.author.username = req.user.username;
+          //Save comment to the database first (even thou create does this, need to do it now so that it is properly added to the campground)
+          comment.save();
           //Add new comment to campgrounds
           campground.comment.push(comment);
           //Save updates to campgrounds
