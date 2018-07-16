@@ -7,6 +7,9 @@ var express = require("express");
 var router = express.Router();
 var Campgrounds = require("../models/campground.js");
 var User = require("../models/user.js")
+var methodOverride = require("method-override");
+
+router.use(methodOverride("_method"));
 
 //Main page
 router.get("/", function(req, res){
@@ -71,6 +74,30 @@ Campgrounds.findById(campID).populate("comment").exec(function(err, camp){
     }
   });
 
+});
+
+//EDIT: Shows edit form for one campground.
+router.get("/campgrounds/:id/edit", isLoggedIn, function(req, res){
+  //Lookup campground and send it to edit page
+  Campgrounds.findById(req.params.id, function(err, campground){
+    if(err){
+      console.log(err);
+    }else{
+      res.render("campgrounds/edit", {campground: campground});
+    }
+  });
+});
+
+//UPDATE: updates object in our database
+router.put("/campgrounds/:id", function(req, res){
+  //Find campground in database
+  Campgrounds.findByIdAndUpdate(req.params.id, {name: req.body.name, img: req.body.img, description: req.body.description}, function(err, campground){
+    if(err){
+      console.log(err);
+    }else{
+      res.redirect("/campgrounds/"+req.params.id);
+    }
+  });
 });
 
 //============================================
