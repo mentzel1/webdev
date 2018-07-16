@@ -18,8 +18,11 @@
           <div class="caption-full">
             <h4 class="pull-right">$9.00/night</h4>
             <h4><%= campground.name %></h4>
-            <p> Description: <%= campground.description %></p>
+            <p> Description: <%-campground.description.replace(/\r\n/g, "<br>");%></p>
             <em>Author: <%=campground.author.username%></em>
+            <div class="text-left">
+              <a role="button" class="btn btn-warning btn-lg-secondary" href="/campgrounds/<%=campground._id%>/edit">Edit Campground</a>
+            </div>
           </div>
       </div>
 
@@ -31,7 +34,6 @@
         <% campground.comment.forEach(function(comment){ %>
           <div class="row">
             <div class="col-md-12">
-
               <strong>Author: <%=comment.author.username%></strong>
               <span class="pull-right">10 Days ago</span>
               <p><%-comment.text.replace(/\r\n/g, "<br>");%></p>
