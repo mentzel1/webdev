@@ -68,16 +68,17 @@ router.get("/campgrounds/:id", function(req, res){
   var campID = req.params.id;
 Campgrounds.findById(campID).populate("comment").exec(function(err, camp){
   if(err){
+    console.log(err);
     console.log("Camp not found!");
   }else{
-    res.render("campgrounds/show", {campground: camp});
+    res.render("campgrounds/show", {campground: camp, loggedin: req.isAuthenticated()});
     }
   });
 
 });
 
 //EDIT: Shows edit form for one campground.
-router.get("/campgrounds/:id/edit", function(req, res){
+router.get("/campgrounds/:id/edit", isOwnerOfCamp, function(req, res){
   //Lookup campground and send it to edit page
   Campgrounds.findById(req.params.id, function(err, campground){
     if(err){
@@ -90,7 +91,7 @@ router.get("/campgrounds/:id/edit", function(req, res){
 });
 
 //UPDATE: updates object in our database
-router.put("/campgrounds/:id", function(req, res){
+router.put("/campgrounds/:id", isOwnerOfCamp, function(req, res){
   //Find campground in database
   Campgrounds.findByIdAndUpdate(req.params.id, {name: req.body.name, img: req.body.img, description: req.body.description}, function(err, campground){
     if(err){
@@ -103,7 +104,7 @@ router.put("/campgrounds/:id", function(req, res){
 });
 
 //DELETE: delete a campground
-router.delete("/campgrounds/:id", function(req, res){
+router.delete("/campgrounds/:id", isOwnerOfCamp, function(req, res){
   //Lookup campground and DELETE
   Campgrounds.findByIdAndDelete(req.params.id, function(err, campground){
     if(err){
@@ -118,10 +119,31 @@ router.delete("/campgrounds/:id", function(req, res){
 //============================================
 //      MIDDLEWARE
 //============================================
-//Function checks if user is logged in, then checks if user is owner of campground. If they are, then edit/delete buttons visible and are able to go to modify campground. Otherwise the buttons are hidden
-// function isOwnerCamp(req, res, next){
-//
-// };
+//Function checks if user is logged in, then checks if user is owner of campground (Assumes you are on campground page). If they are, then edit/delete buttons visible and are able to go to modify campground. Otherwise the buttons are hidden
+function isOwnerOfCamp(req, res, next){
+  //Check if user is logged inspect
+  if(req.isAuthenticated()){
+    //Lookup campgrounds
+    Campgrounds.findById(req.params.id, function(err, campground){
+      if(err){
+        console.log(err);
+        res.redirect("/campgrounds");
+      }else{
+        //Check if user is owner of campground post
+        if(req.user._id.equals(campground.author.id)){
+          //if owner, continue
+          next();
+        }else{
+          //Non ownders redirect back to campground
+          res.redirect("/campgrounds/" + req.params.id);
+        }
+      }
+    });
+  }else {
+    //If not logged in, direct to login page
+    res.redirect("/login");
+  }
+};
 
 //Function proceeds to next function call if true, else goes to login page
 function isLoggedIn(req, res, next){
