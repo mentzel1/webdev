@@ -9,3 +9,11 @@
 .thumbnail .caption-full{
   padding: 9px;
 }
+
+#delete-camp-btn{
+  display: inline;
+}
+
+#camp-btns{
+  padding: 10px;
+}

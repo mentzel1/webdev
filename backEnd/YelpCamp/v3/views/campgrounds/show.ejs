@@ -20,8 +20,11 @@
             <h4><%= campground.name %></h4>
             <p> Description: <%-campground.description.replace(/\r\n/g, "<br>");%></p>
             <em>Author: <%=campground.author.username%></em>
-            <div class="text-left">
-              <a role="button" class="btn btn-warning btn-lg-secondary" href="/campgrounds/<%=campground._id%>/edit">Edit Campground</a>
+            <div id="camp-btns">
+              <a role="button" class="btn btn-warning btn-lg-secondary" href="/campgrounds/<%=campground._id%>/edit">Edit</a>
+              <form action="/campgrounds/<%=campground._id%>?_method=DELETE" method="post" id="delete-camp-btn">
+                <button class="btn btn-danger btn-lg-secondary">Delete</button>
+              </form>
             </div>
           </div>
       </div>
