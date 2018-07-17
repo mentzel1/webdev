@@ -49,9 +49,81 @@ router.post("/campgrounds/:id/comments", isLoggedIn, function(req, res){
   });
 });
 
+//EDIT: Shows edit form for commentsRouter
+router.get("/campgrounds/:id/comment/:id/edit", function(req, res){
+  //Need Campground ID so we get url and split it by "/"
+  var url = req.url;
+  var array = url.split("/", 3);
+  var campID = array[2];
+  //Lookup comment
+  Comment.findById(req.params.id, function(err, comment){
+    if(err){
+      console.log(err);
+      res.redirect("/campgrounds/" + req.params.id);
+    }else{
+      res.render("comments/edit", {comment: comment, campID: campID});
+    }
+  });
+});
+
+//UPDATE: Updates the comment information in our database with changes
+router.put("/campgrounds/:id/comment/:id", function(req, res){
+  var url = req.url;
+  var array = url.split("/comment");
+  var newurl = array[0];
+  Comment.findByIdAndUpdate(req.params.id, req.body.comment, function(err, comment){
+    if(err){
+      console.log(err);
+    }else{
+      res.redirect(newurl);
+    }
+  });
+});
+
+//DELETE: Deletes comment from our database
+router.delete("/campgrounds/:id/comment/:id", function(req, res){
+  var url = req.url;
+  var array = url.split("/comment");
+  var newurl = array[0];
+  Comment.findByIdAndRemove(req.params.id, function(err, comment){
+    if(err){
+      console.log(err);
+      res.redirect(newurl);
+    }else{
+      res.redirect(newurl);
+    }
+  });
+});
+
 //============================================
-//      FUNCTIONS
+//      MIDDLEWARE
 //============================================
+//Function checks if user is logged in, then checks if user is owner of campground (Assumes you are on campground page). If they are, then edit/delete buttons visible and are able to go to modify campground. Otherwise the buttons are hidden
+function isOwnerOfComment(req, res, next){
+  //Check if user is logged inspect
+  if(req.isAuthenticated()){
+    //Lookup campgrounds
+    Comment.findById(req.params.id, function(err, comment){
+      if(err){
+        console.log(err);
+        res.redirect("/campgrounds");
+      }else{
+        //Check if user is owner of campground post
+        if(req.user._id.equals(comment._id)){
+          //if owner, continue
+          next();
+        }else{
+          //Non ownders redirect back to campground
+          res.redirect("/campgrounds/" + req.params.id);
+        }
+      }
+    });
+  }else {
+    //If not logged in, direct to login page
+    res.redirect("/login");
+  }
+};
+
 //Function proceeds to next function call if true, else goes to login page
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
