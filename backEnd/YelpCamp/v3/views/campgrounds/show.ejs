@@ -44,12 +44,16 @@
               <strong>Author: <%=comment.author.username%></strong>
               <span class="pull-right">10 Days ago</span>
               <p><%-comment.text.replace(/\r\n/g, "<br>");%></p>
-              <div id="camp-btns">
-                <a role="button" class="btn btn-warning btn-lg-secondary" href="/campgrounds/<%=campground._id%>/comment/<%=comment.id%>/edit">Edit</a>
-                <form action="/campgrounds/<%=campground._id%>/comment/<%=comment.id%>?_method=DELETE" method="post" id="delete-camp-btn">
-                  <button class="btn btn-danger btn-lg-secondary">Delete</button>
-                </form>
-              </div>
+              <% if(loggedin){ %>
+                <% if(comment.author.id.equals(user._id)){ %>
+                  <div id="camp-btns">
+                    <a role="button" class="btn btn-warning btn-lg-secondary" href="/campgrounds/<%=campground._id%>/comment/<%=comment.id%>/edit">Edit</a>
+                    <form action="/campgrounds/<%=campground._id%>/comment/<%=comment.id%>?_method=DELETE" method="post" id="delete-camp-btn">
+                      <button class="btn btn-danger btn-lg-secondary">Delete</button>
+                    </form>
+                  </div>
+                <% } %>
+              <% } %>
             </div>
           </div>
         <% }); %>
