@@ -50,7 +50,7 @@ router.post("/campgrounds/:id/comments", isLoggedIn, function(req, res){
 });
 
 //EDIT: Shows edit form for commentsRouter
-router.get("/campgrounds/:id/comment/:id/edit", function(req, res){
+router.get("/campgrounds/:id/comment/:id/edit", isOwnerOfComment, function(req, res){
   //Need Campground ID so we get url and split it by "/"
   var url = req.url;
   var array = url.split("/", 3);
@@ -67,7 +67,7 @@ router.get("/campgrounds/:id/comment/:id/edit", function(req, res){
 });
 
 //UPDATE: Updates the comment information in our database with changes
-router.put("/campgrounds/:id/comment/:id", function(req, res){
+router.put("/campgrounds/:id/comment/:id", isOwnerOfComment, function(req, res){
   var url = req.url;
   var array = url.split("/comment");
   var newurl = array[0];
@@ -81,7 +81,7 @@ router.put("/campgrounds/:id/comment/:id", function(req, res){
 });
 
 //DELETE: Deletes comment from our database
-router.delete("/campgrounds/:id/comment/:id", function(req, res){
+router.delete("/campgrounds/:id/comment/:id", isOwnerOfComment, function(req, res){
   var url = req.url;
   var array = url.split("/comment");
   var newurl = array[0];
@@ -109,12 +109,16 @@ function isOwnerOfComment(req, res, next){
         res.redirect("/campgrounds");
       }else{
         //Check if user is owner of campground post
-        if(req.user._id.equals(comment._id)){
+        if(req.user._id.equals(comment.author.id)){
           //if owner, continue
           next();
         }else{
+          //Get orginal url and slice it to go back to specific camp
+          var url = req.url;
+          var array = url.split("/comment");
+          var newurl = array[0];
           //Non ownders redirect back to campground
-          res.redirect("/campgrounds/" + req.params.id);
+          res.redirect(newurl);
         }
       }
     });
