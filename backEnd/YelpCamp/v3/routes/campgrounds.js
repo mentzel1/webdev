@@ -20,9 +20,9 @@ router.get("/", function(req, res){
 //INDEX: Displays a list of all campgrounds
 router.get("/campgrounds", function(req, res){
   Campgrounds.find({}, function(err, campgroundsUpdated){
-    if(err){
-      console.log("No Campgrounds found. ERROR!");
+    if(err || !campgroundsUpdated){
       console.log(err);
+        req.flash("error", "Campground not found!");
     }else{
       res.render("campgrounds/index", {campgrounds: campgroundsUpdated, user: req.user});
     }
@@ -52,10 +52,12 @@ router.post("/campgrounds", middleware.isLoggedIn, function(req, res){
   };
   //Add campground into to our database
   Campgrounds.create(newCamp, function(err, campground){
-    if(err){
-      console.log("Error adding newly created campground!");
+    if(err || !campground){
       console.log(err);
+      req.flash("error", "Campground not added!");
+      res.redirect("/campgrounds");
     }else{
+      req.flash("success", "Campground successfully added!");
       //redirect is get by default
       res.redirect("/campgrounds");
     }
@@ -67,9 +69,10 @@ router.get("/campgrounds/:id", function(req, res){
   //lookup campground with this id to display its info
   var campID = req.params.id;
 Campgrounds.findById(campID).populate("comment").exec(function(err, camp){
-  if(err){
+  if(err || !camp){
     console.log(err);
-    console.log("Camp not found!");
+    req.flash("error", "Campground not found!");
+    res.redirect("/campground");
   }else{
     res.render("campgrounds/show", {campground: camp, loggedin: req.isAuthenticated()});
     }
@@ -81,8 +84,9 @@ Campgrounds.findById(campID).populate("comment").exec(function(err, camp){
 router.get("/campgrounds/:id/edit", middleware.isOwnerOfCamp, function(req, res){
   //Lookup campground and send it to edit page
   Campgrounds.findById(req.params.id, function(err, campground){
-    if(err){
+    if(err || !campground){
       console.log(err);
+      req.flash("error", "Campground not found!");
       res.redirect("/campgrounds");
     }else{
       res.render("campgrounds/edit", {campground: campground});
@@ -94,10 +98,12 @@ router.get("/campgrounds/:id/edit", middleware.isOwnerOfCamp, function(req, res)
 router.put("/campgrounds/:id", middleware.isOwnerOfCamp, function(req, res){
   //Find campground in database
   Campgrounds.findByIdAndUpdate(req.params.id, {name: req.body.name, img: req.body.img, description: req.body.description}, function(err, campground){
-    if(err){
+    if(err || !campground){
       console.log(err);
+      req.flash("error", "Campground not found!");
       res.redirect("/campgrounds");
     }else{
+      req.flash("success", "Campground successfully updated!");
       res.redirect("/campgrounds/"+req.params.id);
     }
   });
@@ -107,10 +113,11 @@ router.put("/campgrounds/:id", middleware.isOwnerOfCamp, function(req, res){
 router.delete("/campgrounds/:id", middleware.isOwnerOfCamp, function(req, res){
   //Lookup campground and DELETE
   Campgrounds.findByIdAndDelete(req.params.id, function(err, campground){
-    if(err){
+    if(err || !campground){
       console.log(err);
-      // res.redirect("/campgrounds/" + req.params.id);
+      req.flash("error", "Campground not deleted!");
     }else{
+      req.flash("success", "Campground successfully deleted!");
       res.redirect("/campgrounds");
     }
   });

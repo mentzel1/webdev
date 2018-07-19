@@ -9,6 +9,7 @@ var User = require("./models/user.js");
 var passport = require("passport");
 var localStrategy = require("passport-local");
 var session = require("express-session");
+var flash = require("connect-flash-plus");
 
 var authRouter = require("./routes/auth.js");
 var commentsRouter = require("./routes/comments.js");
@@ -36,6 +37,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+app.use(flash());
 //To use passport in express you need this
 app.use(passport.initialize());
 //For apps using persistant login sessions this is reccommended but not required
@@ -45,9 +47,12 @@ passport.use(new localStrategy(User.authenticate()));
 //Tell passport to use your user models serialize and desearialize methods for session support. When starting session this will serialize the user ID, and when ending session, finding the user by ID and desearializing.
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-//Make current user avaliable to all routes (so we do not have to add it manually to each route)
+//Make current user avaliable to all routes (so we do not have to add it manually to each route) SET LOCAL VAIRABLES avaliable to all files
 app.use(function(req, res, next){
   res.locals.user = req.user;
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
+
   next();
 });
 
