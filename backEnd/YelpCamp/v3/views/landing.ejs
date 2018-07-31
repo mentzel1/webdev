@@ -1,7 +1,46 @@
-<% include partials/header %>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Yelp Camp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <!-- Express looks up the files relative to the static directory, so the name of the static directory is not part of the URL. Hence path is /stylesheets/main.css instead of /public/stylesheets/main.css-->
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+    <link type="text/css" rel="stylesheet" href="/stylesheets/landing.css" />
+    <!--Showing the latest stable release. Must come before bootstrap javascript CDN below because the javascript relies on the the jquery-->
+   <script src="https://code.jquery.com/jquery-3.3.1.js"	  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+   <!-- Latest compiled and minified JavaScript (requires jquery and e need this javascript in order for the toggle menue in our navbar to work) -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
+  </head>
+  <body>
+    <div class="container">
+          <% if(error && error.length > 0){ %>
+              <div class="alert alert-danger" role="alert">
+                  <%= error %>
+              </div>
+          <% } %>
+          <% if(success && success.length > 0){ %>
+              <div class="alert alert-success" role="alert">
+                  <%= success %>
+              </div>
+          <% } %>
+    </div>
 
-<div class="container">
-  <h1> Yelp Camp Main Page!</h1>
-  <a href="/campgrounds" class="btn btn-primary">View Campgrounds</a>
-  <% include partials/footer %>
-</div>
+
+   <div id="landing-header">
+    <h1> Yelp Camp Main Page!</h1>
+    <a href="/campgrounds" class="btn btn-primary">View Campgrounds</a>
+  </div>
+
+  <ul class="slideshow">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+
+    </body>
+
+<% include partials/footer %>
