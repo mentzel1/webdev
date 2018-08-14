@@ -8,10 +8,17 @@
   <p><%=blog.date.toDateString()%></p>
   <!-- Replace all newline "\r\n" with HTML bracket for new line, then show unescaped html using "-" instead of escaped html value using "=" -->
   <p><%-blog.body.replace(/\r\n/g, "<br>");%></p>
-  <a type="button" href="/blogs/<%= blog._id%>/edit" class="ui instagram button">Edit Blog</a>
+  <a href="/blogs/<%= blog._id%>/edit" class="ui instagram button">Edit Blog</a>
   <form id="delete" action="/blogs/<%=blog._id%>?_method=DELETE" method="POST">
     <button class="ui youtube button">DELETE</button>
   </form>
 </div>
+<div class="ui raised very padded text container segment">
+  <h3 class="ui left floated header">Comments</h3>
+  <a href="/blogs/<%= blog._id%>/comment/new" id="comment_btn" class="ui right floated yellow button">Add Comment</a>
+  <h1></h1>
+  <hr />
+</div>
+
 
 <% include ../partials/footer %>

@@ -3,11 +3,12 @@ var router = express.Router();
 var Blog = require("../models/blogpost.js");
 
 //"INDEX" displays a list of all blogs
-app.get("/", function(req, res){
+router.get("/", function(req, res){
   res.redirect("/blogs");
 });
 
-app.get("/blogs", function(req, res){
+//"INDEX" displays a list of all blogs
+router.get("/blogs", function(req, res){
   Blog.find({}, function(err, blogs){
     if(err){
       console.log("CANNOT FIND BLOGS!");
@@ -16,12 +17,12 @@ app.get("/blogs", function(req, res){
     }
   });
 });
-//"NEW" displays form to create new blog
-app.get("/blogs/new", function(req, res){
+//"NEW" displays form to create new blogpost
+router.get("/blogs/new", function(req, res){
   res.render("blogpost/new");
 });
 //"CREATE" adds new blog post to database
-app.post("/blogs", function(req, res){
+router.post("/blogs", function(req, res){
   //Replace an HTTP posted body property with the sanitized String
   req.body.blog.body = req.sanitize(req.body.blog.body);
   Blog.create(req.body.blog, function(err, newBlog){
@@ -34,7 +35,7 @@ app.post("/blogs", function(req, res){
 });
 
 //"SHOW" route shows details about a specific blogs
-app.get("/blogs/:id", function(req, res){
+router.get("/blogs/:id", function(req, res){
   //Get specific blog through ID
   Blog.findById(req.params.id, function(err, blog){
     if(err){
@@ -46,7 +47,7 @@ app.get("/blogs/:id", function(req, res){
 });
 
 //"EDIT" route shows edit form for one blogs
-app.get("/blogs/:id/edit", function(req, res){
+router.get("/blogs/:id/edit", function(req, res){
   Blog.findById(req.params.id, function(err, foundBlog){
     if(err){
       res.redirect("/blogs");
@@ -57,7 +58,7 @@ app.get("/blogs/:id/edit", function(req, res){
 });
 
 //"UPDATE" route updates a particular blog, then redirects to blog Page
-app.put("/blogs/:id", function(req, res){
+router.put("/blogs/:id", function(req, res){
   //Replace an HTTP posted body property with the sanitized String
   req.body.blog.body = req.sanitize(req.body.blog.body);
   //Update databse with new update blog
@@ -71,7 +72,7 @@ app.put("/blogs/:id", function(req, res){
 });
 
 //"DELETE" route removes a particular blog, then redirects
-app.delete("/blogs/:id", function(req, res){
+router.delete("/blogs/:id", function(req, res){
   Blog.findByIdAndRemove(req.params.id, function(err){
     if(err){
       res.redirect("/blogs");
@@ -80,3 +81,5 @@ app.delete("/blogs/:id", function(req, res){
     }
   });
 })
+
+module.exports = router;

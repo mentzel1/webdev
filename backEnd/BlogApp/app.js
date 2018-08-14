@@ -7,6 +7,10 @@ var mongoose = require("mongoose");
 var methodOverride = require("method-override");
 var expressSanitizer = require("express-sanitizer");
 var Blog = require("./models/blogpost.js");
+var Comment = require("./models/comment.js");
+
+var blogpostRouter = require("./routes/blogpost.js");
+var commentRouter = require("./routes/comment.js");
 
 //APPLICATION SETUP
 //=================================================
@@ -23,86 +27,9 @@ app.set("view engine", "ejs");
 //Connect to mongoDB database for BlogApp
 mongoose.connect('mongodb://localhost/blog_app');
 
-//ROUTES
-//================================================
-//"INDEX" displays a list of all blogs
-app.get("/", function(req, res){
-  res.redirect("/blogs");
-});
+app.use(commentRouter);
+app.use(blogpostRouter);
 
-app.get("/blogs", function(req, res){
-  Blog.find({}, function(err, blogs){
-    if(err){
-      console.log("CANNOT FIND BLOGS!");
-    }else{
-      res.render("index", {blogs: blogs});
-    }
-  });
-});
-//"NEW" displays form to create new blog
-app.get("/blogs/new", function(req, res){
-  res.render("blogpost/new");
-});
-//"CREATE" adds new blog post to database
-app.post("/blogs", function(req, res){
-  //Replace an HTTP posted body property with the sanitized String
-  req.body.blog.body = req.sanitize(req.body.blog.body);
-  Blog.create(req.body.blog, function(err, newBlog){
-    if(err){
-      res.redirect("/blogs/new");
-    }else{
-      res.redirect("blogs");
-    }
-  });
-});
-
-//"SHOW" route shows details about a specific blogs
-app.get("/blogs/:id", function(req, res){
-  //Get specific blog through ID
-  Blog.findById(req.params.id, function(err, blog){
-    if(err){
-      res.redirect("blogs");
-    }else{
-      res.render("blogpost/show", {blog: blog});
-    }
-  });
-});
-
-//"EDIT" route shows edit form for one blogs
-app.get("/blogs/:id/edit", function(req, res){
-  Blog.findById(req.params.id, function(err, foundBlog){
-    if(err){
-      res.redirect("/blogs");
-    }else{
-      res.render("blogpost/edit", {blog: foundBlog});
-    }
-  });
-});
-
-//"UPDATE" route updates a particular blog, then redirects to blog Page
-app.put("/blogs/:id", function(req, res){
-  //Replace an HTTP posted body property with the sanitized String
-  req.body.blog.body = req.sanitize(req.body.blog.body);
-  //Update databse with new update blog
-  Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
-    if(err){
-      res.redirect("/blogs");
-    }else{
-      res.redirect("/blogs/"+req.params.id);
-    }
-  });
-});
-
-//"DELETE" route removes a particular blog, then redirects
-app.delete("/blogs/:id", function(req, res){
-  Blog.findByIdAndRemove(req.params.id, function(err){
-    if(err){
-      res.redirect("/blogs");
-    }else{
-      res.redirect("/blogs");
-    }
-  });
-})
 
 //Start node server
 app.listen(3000, function(){
