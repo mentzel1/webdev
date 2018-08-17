@@ -1,0 +1,16 @@
+<% include partials/header %>
+
+<div class="ui raised very padded text container segment">
+  <div class = "ui huge header">Sign Up</div>
+  <form class="ui form" action="#" method="POST">
+    <div class="field">
+      <input type="email" name="username" placeholder="email" required>
+    </div>
+    <div class="field">
+      <input type="password" name=" password" placeholder="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,}"  title="Must contain at least one number and one uppercase and lowercase letter, and at least 10 or more characters" required>
+    </div>
+<button class="ui blue basic button" type="submit">Submit</button>
+  </form>
+</div>
+
+<% include partials/footer %>
