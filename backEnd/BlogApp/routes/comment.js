@@ -22,18 +22,17 @@ router.post("/blogs/:id/comment", function(req, res){
         if(err){
           res.redirect("back");
         }else{
-          //Add the commmment id to the blog in our database
-          console.log("Comment id:");
-          console.log(newComment._id);
-          console.log("blog comments:");
-          console.log(blog.comments);
+          //Save comment to the database first (even thou create does this, need to do it now so that it is properly added to the blog. Comment wont be saved till the end of this function, but we need it to be saved before the finished execution of this function)
+          newComment.save();
+          //Add new comment to blog
           blog.comments.push(newComment._id);
+          //Save updates to blog
+          blog.save();
           res.redirect("/blogs/" + req.params.id);
         }
       });
     }
   });
-  //res.send("YAYA Comment route works!");
 });
 
 module.exports = router;
