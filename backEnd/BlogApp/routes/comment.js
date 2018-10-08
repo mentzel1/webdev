@@ -37,8 +37,28 @@ router.post("/blogs/:id/comment", function(req, res){
 
 //EDIT - Shows/populates the form to edit a single blog comment
 router.get("/blogs/:id_blog/comment/:id_comment/edit", function(req, res){
-  console.log(req);
-  res.send("Update route works!");
+  Comment.findById(req.params.id_comment, function(err, comment){
+    if(err){
+      res.redirect("back");
+    }else{
+      res.render("comment/edit", {comment: comment, id: req.params.id_blog});
+    }
+  });
+});
+
+//UPDATE - updates comment information in our database
+router.put("/blogs/:id_blog/comment/:id_comment", function(req, res){
+  //Replace an HTTP posted body property with the sanitized String
+  req.body.comment.body = req.sanitize(req.body.comment.body);
+  req.body.comment.author = req.sanitize(req.body.comment.author);
+  Comment.findByIdAndUpdate(req.params.id_comment, {body: req.body.comment.body, author: req.body.comment.author}, function(err, commentUpdated){
+    if(err){
+      console.log(err);
+    }else{
+      res.redirect("/blogs/" + req.params.id_blog);
+    }
+  });
+
 });
 
 module.exports = router;
