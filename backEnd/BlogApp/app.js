@@ -9,7 +9,7 @@ var expressSanitizer = require("express-sanitizer");
 var Blog = require("./models/blogpost.js");
 var Comment = require("./models/comment.js");
 
-//Add routes
+//import routes
 var blogpostRouter = require("./routes/blogpost.js");
 var commentRouter = require("./routes/comment.js");
 var authRouter = require("./routes/auth.js");
@@ -29,6 +29,7 @@ app.set("view engine", "ejs");
 //Connect to mongoDB database for BlogApp
 mongoose.connect('mongodb://localhost/blog_app');
 
+// ROUTES
 app.use(commentRouter);
 app.use(blogpostRouter);
 app.use(authRouter);

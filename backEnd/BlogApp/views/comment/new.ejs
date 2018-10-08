@@ -2,14 +2,15 @@
 
 <div class="ui raised very padded text container segment">
   <div class = "ui huge header">New Comment</div>
-  <form class="ui form" action="#" method="POST">
+  <%console.log(id)%>
+  <form class="ui form" action="/blogs/<%=id%>/comment" method="POST">
     <div class="field">
-      <label>Title</label>
-      <input>
+      <label>Author</label>
+      <input name="comment[author]" type="Text" required>
     </div>
     <div class="field">
       <label>Blog Comment</label>
-      <textarea></textarea>
+      <textarea name="comment[body]"></textarea>
     </div>
     <button class="ui blue basic button" type="submit">Submit</button>
   </form>
