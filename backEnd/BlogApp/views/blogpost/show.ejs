@@ -18,6 +18,19 @@
   <a href="/blogs/<%= blog._id%>/comment/new" id="comment_btn" class="ui right floated yellow button">Add Comment</a>
   <h1></h1>
   <hr />
+  <% for(i=0; i < blog.comments.length; i++){%>
+    <div class="ui segment">
+
+      <h4><%=blog.comments[i].author%></h4>
+      <p><em><%=blog.comments[i].date%></em></p>
+      <p><%=blog.comments[i].body%></p>
+
+      <a href="/blogs/<%=blog._id%>/comment/<%=blog.comments[i]._id%>/edit" class="ui instagram button">Edit Blog</a>
+      <form id="delete" action="#" method="POST">
+        <button class="ui youtube button">DELETE</button>
+      </form>
+    </div>
+  <%}%>
 </div>
 
 

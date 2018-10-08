@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var Blog = require("../models/blogpost.js");
+var Comment = require("../models/comment.js");
 
 //"INDEX" displays a list of all blogs
 router.get("/", function(req, res){
@@ -17,10 +18,12 @@ router.get("/blogs", function(req, res){
     }
   });
 });
+
 //"NEW" displays form to create new blogpost
 router.get("/blogs/new", function(req, res){
   res.render("blogpost/new");
 });
+
 //"CREATE" adds new blog post to database
 router.post("/blogs", function(req, res){
   //Replace an HTTP posted body property with the sanitized String
@@ -37,9 +40,9 @@ router.post("/blogs", function(req, res){
 //"SHOW" route shows details about a specific blogs
 router.get("/blogs/:id", function(req, res){
   //Get specific blog through ID
-  Blog.findById(req.params.id, function(err, blog){
+  Blog.findById(req.params.id).populate('comments').exec(function(err, blog){
     if(err){
-      res.redirect("blogs");
+      redirect("back");
     }else{
       res.render("blogpost/show", {blog: blog});
     }

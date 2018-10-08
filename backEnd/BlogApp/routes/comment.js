@@ -35,4 +35,10 @@ router.post("/blogs/:id/comment", function(req, res){
   });
 });
 
+//EDIT - Shows/populates the form to edit a single blog comment
+router.get("/blogs/:id_blog/comment/:id_comment/edit", function(req, res){
+  console.log(req);
+  res.send("Update route works!");
+});
+
 module.exports = router;
