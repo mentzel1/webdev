@@ -15,11 +15,13 @@ router.post("/blogs/:id/comment", function(req, res){
   //Create comment object
   Comment.create(req.body.comment, function(err, newComment){
     if(err){
+      console.log(err);
       res.redirect("back");
     }else{
       //Lookup current blog we are making comment on by ID
       Blog.findById(req.params.id, function(err, blog){
         if(err){
+          console.log(err);
           res.redirect("back");
         }else{
           //Save comment to the database first (even thou create does this, need to do it now so that it is properly added to the blog. Comment wont be saved till the end of this function, but we need it to be saved before the finished execution of this function)
@@ -39,6 +41,7 @@ router.post("/blogs/:id/comment", function(req, res){
 router.get("/blogs/:id_blog/comment/:id_comment/edit", function(req, res){
   Comment.findById(req.params.id_comment, function(err, comment){
     if(err){
+      console.log(err);
       res.redirect("back");
     }else{
       res.render("comment/edit", {comment: comment, id: req.params.id_blog});
