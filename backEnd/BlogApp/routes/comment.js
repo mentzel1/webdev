@@ -58,6 +58,19 @@ router.put("/blogs/:id_blog/comment/:id_comment", function(req, res){
       res.redirect("/blogs/" + req.params.id_blog);
     }
   });
+});
+
+//DELETE - removes comment from the database
+router.delete("/blogs/:id_blog/comment/:id_comment", function(req, res){
+  //Find comment by ID and remove
+  Comment.findByIdAndRemove(req.params.id_comment, function(err, foundComment){
+    if(err){
+      console.log(err);
+      res.redirect("/blogs/" + req.params.id_blog);
+    }else{
+      res.redirect("/blogs/" + req.params.id_blog);
+    }
+  });
 
 });
 
