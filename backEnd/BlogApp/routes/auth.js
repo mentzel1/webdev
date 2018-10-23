@@ -7,9 +7,14 @@ router.get("/signup", function(req, res){
   res.render("signup");
 });
 
+//Displays login Page
+router.get("/login", function(req, res){
+  res.render("login");
+});
+
 //CREATE - Creates new user in our database
 router.post("/signup", middleware.confirmPassword, function(req, res){
-  res.send("Path works!");
+  res.redirect("/blogs");
 });
 
 module.exports = router;
