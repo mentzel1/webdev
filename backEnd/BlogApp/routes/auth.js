@@ -15,12 +15,20 @@ router.get("/login", function(req, res){
 
 //CREATE - Creates new user in our database
 router.post("/signup", middleware.confirmPassword, function(req, res){
-  //Create user in mongo database using method we plugged into user Schema
-  User.register({username: req.body.username}, req.body.password, function(err, result){
+  //Create user in mongo database using method we plugged into user Schema (also checks if username is unique, if not throws error)
+  User.register({username: req.body.username}, req.body.password, function(err, user){
     if(err){
       console.log(err)
     }else{
-      res.redirect("/blogs");
+      //loads the req.user information in the session
+      req.login(user, function(err){
+        if(err){
+          console.log(err);
+          return next(err);
+        }else{
+          res.redirect("/blogs");
+        }
+      });
     }
   });
 });
