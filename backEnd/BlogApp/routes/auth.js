@@ -22,7 +22,7 @@ router.post("/signup", middleware.confirmPassword, function(req, res){
           console.log(err);
           res.redirect("back");
         }else{
-          // console.log(req.user);
+          console.log(req.user.username);
           res.redirect("/blogs");
         }
       });
@@ -39,6 +39,7 @@ router.get("/login", function(req, res){
 router.post("/login",
 passport.authenticate('local', { failureRedirect: '/login' }),
   function(req, res) {
+    console.log(req.user);
     res.redirect('/blogs');
   });
 
