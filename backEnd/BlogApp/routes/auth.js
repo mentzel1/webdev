@@ -16,13 +16,19 @@ router.post("/signup", middleware.confirmPassword, function(req, res){
     if(err){
       console.log(err)
     }else{
+      //Store First and last Name
+      user.firstName = req.body.firstName;
+      user.lastName = req.body.lastName;
+      console.log(req.body.lastName);
+      //save changes made (didnt use create function which autosaves for us)
+      user.save();
+
       //Log user in upon registering
       req.login(user, function(err){
         if(err){
           console.log(err);
           res.redirect("back");
         }else{
-          console.log(req.user.username);
           res.redirect("/blogs");
         }
       });
@@ -39,7 +45,6 @@ router.get("/login", function(req, res){
 router.post("/login",
 passport.authenticate('local', { failureRedirect: '/login' }),
   function(req, res) {
-    console.log(req.user);
     res.redirect('/blogs');
   });
 

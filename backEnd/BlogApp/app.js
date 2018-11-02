@@ -36,7 +36,7 @@ app.use(expressSanitizer());
 //Do not have to add ejs file extension
 app.set("view engine", "ejs");
 //Connect to mongoDB database for BlogApp
-mongoose.connect('mongodb://localhost/blog_app');
+mongoose.connect('mongodb://blogAppUser:Bl0g_App_Pazzw0rd@localhost/blog_app?authSource=blog_app');
 //Need express session for passport to piggy back off of it (also configure it)
 app.use(expressSession({
   //Only saves session information if the user logs in (not only visit website)
@@ -59,7 +59,16 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// ROUTES (put at end to prevent issues?)
+//When we set app.use without a path, this middleware is executed on every route of our app. We declare local variables so when passport populates req.user so it is available only to the view(s) rendered during that request / response cycle (if any). Thus only avlaiable when user logged on, and it is avaliable anywehre in our app. Otherwise we would have to pass it as an object to each one of our routes manually.
+app.use(function(req, res, next){
+  res.locals.user = req.user;
+  next();
+});
+
+//================================
+//             ROUTES
+//================================
+//Include ROUTES (why do these have to be at the end??beacuse the "user listed above is not avaliable yet, so need routes after this")
 app.use(commentRouter);
 app.use(blogpostRouter);
 app.use(authRouter);
