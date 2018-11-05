@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var Blog = require("../models/blogpost.js");
 var Comment = require("../models/comment.js");
+var middleware = require("../middleware/index.js");
 
 //"INDEX" displays a list of all blogs
 router.get("/", function(req, res){
@@ -20,12 +21,12 @@ router.get("/blogs", function(req, res){
 });
 
 //"NEW" displays form to create new blogpost
-router.get("/blogs/new", function(req, res){
+router.get("/blogs/new", middleware.loggedOn, function(req, res){
   res.render("blogpost/new");
 });
 
 //"CREATE" adds new blog post to database
-router.post("/blogs", function(req, res){
+router.post("/blogs", middleware.loggedOn, function(req, res){
   //Replace an HTTP posted body property with the sanitized String
   req.body.blog.body = req.sanitize(req.body.blog.body);
   Blog.create(req.body.blog, function(err, newBlog){
@@ -35,7 +36,6 @@ router.post("/blogs", function(req, res){
       //Store current user as the author of this commnet
       newBlog.author = req.user._id;
       newBlog.save();
-      console.log(newBlog);
       res.redirect("blogs");
     }
   });
@@ -54,7 +54,7 @@ router.get("/blogs/:id", function(req, res){
 });
 
 //"EDIT" route shows edit form for one blogs
-router.get("/blogs/:id/edit", function(req, res){
+router.get("/blogs/:id/edit", middleware.loggedOn, middleware.confirmBlogOwner, function(req, res){
   Blog.findById(req.params.id, function(err, foundBlog){
     if(err){
       res.redirect("/blogs");
@@ -65,7 +65,7 @@ router.get("/blogs/:id/edit", function(req, res){
 });
 
 //"UPDATE" route updates a particular blog, then redirects to blog Page
-router.put("/blogs/:id", function(req, res){
+router.put("/blogs/:id", middleware.loggedOn, middleware.confirmBlogOwner, function(req, res){
   //Replace an HTTP posted body property with the sanitized String
   req.body.blog.body = req.sanitize(req.body.blog.body);
   //Update databse with new update blog
@@ -79,7 +79,7 @@ router.put("/blogs/:id", function(req, res){
 });
 
 //"DELETE" route removes a particular blog, then redirects
-router.delete("/blogs/:id", function(req, res){
+router.delete("/blogs/:id", middleware.loggedOn, middleware.confirmBlogOwner, function(req, res){
   Blog.findByIdAndRemove(req.params.id, function(err){
     if(err){
       res.redirect("/blogs");

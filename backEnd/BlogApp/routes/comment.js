@@ -2,14 +2,15 @@ var express = require("express");
 var router = express.Router();
 var Comment = require("../models/comment.js");
 var Blog = require("../models/blogpost.js");
+var middleware = require("../middleware/index.js");
 
 //NEW - shows page to create new Comment
-router.get("/blogs/:id/comment/new", function(req, res){
+router.get("/blogs/:id/comment/new", middleware.loggedOn, function(req, res){
   res.render("comment/new", {id: req.params.id});
 });
 
 //CREATE - Creats comments for specific blog in our databse
-router.post("/blogs/:id/comment", function(req, res){
+router.post("/blogs/:id/comment", middleware.loggedOn, function(req, res){
   //Clean text for potential scripts/html
   req.body.comment.body = req.sanitize(req.body.comment.body);
   //Create comment object
