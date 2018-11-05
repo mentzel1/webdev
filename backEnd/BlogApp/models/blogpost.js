@@ -7,7 +7,8 @@ const blogSchema = new mongoose.Schema({
   image: String,
   body: String,
   date: {type: Date, default: Date.now},
-  comments: [{type: mongoose.Schema.Types.ObjectId, ref: "Comment"}]
+  comments: [{type: mongoose.Schema.Types.ObjectId, ref: "Comment"}],
+  author: {type: mongoose.Schema.Types.ObjectId, ref: "User"}
 });
 
 //Converts our bueprint into a "Model" we can work with (Create object constructor from schema definition) and export it for use outside file

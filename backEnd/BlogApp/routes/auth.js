@@ -19,7 +19,6 @@ router.post("/signup", middleware.confirmPassword, function(req, res){
       //Store First and last Name
       user.firstName = req.body.firstName;
       user.lastName = req.body.lastName;
-      console.log(req.body.lastName);
       //save changes made (didnt use create function which autosaves for us)
       user.save();
 

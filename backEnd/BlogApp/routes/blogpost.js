@@ -32,6 +32,10 @@ router.post("/blogs", function(req, res){
     if(err){
       res.redirect("/blogs/new");
     }else{
+      //Store current user as the author of this commnet
+      newBlog.author = req.user._id;
+      newBlog.save();
+      console.log(newBlog);
       res.redirect("blogs");
     }
   });

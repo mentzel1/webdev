@@ -20,9 +20,8 @@
   <hr />
   <% for(i=0; i < blog.comments.length; i++){%>
     <div class="ui segment">
-
       <h4><%=blog.comments[i].author%></h4>
-      <p><em><%=blog.comments[i].date%></em></p>
+      <p><em><%=blog.comments[i].date.toDateString()%></em></p>
       <p><%=blog.comments[i].body%></p>
 
       <a href="/blogs/<%=blog._id%>/comment/<%=blog.comments[i]._id%>/edit" class="ui instagram button">Edit Blog</a>
