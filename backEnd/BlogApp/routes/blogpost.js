@@ -44,7 +44,7 @@ router.post("/blogs", function(req, res){
 //"SHOW" route shows details about a specific blogs
 router.get("/blogs/:id", function(req, res){
   //Get specific blog through ID
-  Blog.findById(req.params.id).populate('comments').exec(function(err, blog){
+  Blog.findById(req.params.id).populate('comments').populate("author").exec(function(err, blog){
     if(err){
       redirect("back");
     }else{

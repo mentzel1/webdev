@@ -25,7 +25,7 @@ router.post("/blogs/:id/comment", function(req, res){
           res.redirect("back");
         }else{
           //Save current logged on user as author of this comment
-          newComment.author = req.user._id;
+          newComment.author = req.user;
           //Save comment to the database first (even thou create does this, need to do it now so that it is properly added to the blog. Comment wont be saved till the end of this function, but we need it to be saved before the finished execution of this function)
           newComment.save();
           //Add new comment to blog
