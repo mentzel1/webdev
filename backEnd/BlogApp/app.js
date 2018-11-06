@@ -15,7 +15,7 @@ var passportSession = require("passport-session");
 var passportLocal = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
 //Required to store express session information in mongodb databse
-var mongoStore = require("connect-mongo")(expressSession);
+var mongoDBStore = require("connect-mongodb-session")(expressSession);
 var User = require("./models/user.js");
 
 //import routes
@@ -36,18 +36,36 @@ app.use(expressSanitizer());
 //Do not have to add ejs file extension
 app.set("view engine", "ejs");
 //Connect to mongoDB database for BlogApp
-mongoose.connect('mongodb://blogAppUser:Bl0g_App_Pazzw0rd@localhost/blog_app?authSource=blog_app');
+mongoose.connect('mongodb://blogAppUser:Bl0g_App_Pazzw0rd@localhost/blog_app?authSource=blog_app', {useNewUrlParser: true});
+//Create new connection (faster) to mongoDB to store sessions in BlogApp
+var store = new mongoDBStore({
+  uri: "mongodb://blogAppUser:Bl0g_App_Pazzw0rd@localhost/blog_app?authSource=blog_app",
+  collection: "sessions"
+});
+
+store.on('connected', function() {
+  store.client; // The underlying MongoClient object from the MongoDB driver
+});
+
+// Catch errors
+store.on('error', function(error) {
+  assert.ifError(error);
+  assert.ok(false);
+});
+
 //Need express session for passport to piggy back off of it (also configure it)
 app.use(expressSession({
   //Only saves session information if the user logs in (not only visit website)
-  saveUninitialized: false,
+  saveUninitialized: true,
   //Double check if needed to be true depending on session store
-  resave: false,
+  resave: true,
   //Used to sign the session Cookie ID
   secret: "Kitty is a cute little bugger!",
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+  },
   //Save to monogDB store using new connection to Mongo databse
-  // store: new mongoStore({url: "mongodb://localhost/sessions"})
-   store: new mongoStore({ mongooseConnection: mongoose.connection })
+  store: store
 }));
 //Configure passport, reqired in express app
 app.use(passport.initialize());
