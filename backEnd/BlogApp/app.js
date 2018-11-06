@@ -17,6 +17,8 @@ var passportLocalMongoose = require("passport-local-mongoose");
 //Required to store express session information in mongodb databse
 var mongoDBStore = require("connect-mongodb-session")(expressSession);
 var User = require("./models/user.js");
+//Required to flash error messages to the username
+var flash = require("connect-flash-plus");
 
 //import routes
 var blogpostRouter = require("./routes/blogpost.js");
@@ -82,6 +84,9 @@ app.use(function(req, res, next){
   res.locals.user = req.user;
   next();
 });
+
+//Tell express to use flash
+app.use(flash());
 
 //================================
 //             ROUTES
