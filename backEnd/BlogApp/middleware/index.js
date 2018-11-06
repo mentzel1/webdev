@@ -35,8 +35,8 @@ middleware.confirmBlogOwner = function(req, res, next){
         next();
         //stay on page and flash error
       }else{
-        res.send("ACCESS DENIED! Go Back!");
-        // res.redirect("/blogs");
+        // res.send("ACCESS DENIED! Go Back!");
+        res.redirect("/blogs");
       }
     }
   });
