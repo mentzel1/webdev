@@ -1,12 +1,13 @@
 var Blog = require("../models/blogpost.js");
+var flash = require("connect-flash-plus");
 //Empty object variable we are defining methods for
 var middleware = {};
 
 
 middleware.confirmPassword = function(req, res, next){
   if(req.body.password != req.body.passwordConfirm){
-    console.log("Bad password");
-    res.render("signup", {badPass: true});
+    req.flash("error", "Passwords do not match!");
+    res.render("signup", {error: req.flash("error")});
   }else{
     next();
   }
@@ -17,8 +18,9 @@ middleware.loggedOn = function(req, res, next){
   if(req.user){
     next();
   }else{
+    req.flash("error", "Log in is required for blog posting!");
     //Redirect to login page
-    res.redirect("/login");
+    res.render("login", {error: req.flash("error")});
   };
 };
 

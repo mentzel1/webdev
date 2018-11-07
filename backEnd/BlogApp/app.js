@@ -39,6 +39,7 @@ app.use(expressSanitizer());
 app.set("view engine", "ejs");
 //Connect to mongoDB database for BlogApp
 mongoose.connect('mongodb://blogAppUser:Bl0g_App_Pazzw0rd@localhost/blog_app?authSource=blog_app', {useNewUrlParser: true});
+// mongoose.set('useFindAndModify', false);
 //Create new connection (faster) to mongoDB to store sessions in BlogApp
 var store = new mongoDBStore({
   uri: "mongodb://blogAppUser:Bl0g_App_Pazzw0rd@localhost/blog_app?authSource=blog_app",
@@ -79,14 +80,15 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//Tell express to use flash (stored in session so need to put after session configuration above)
+app.use(flash());
+
 //When we set app.use without a path, this middleware is executed on every route of our app. We declare local variables so when passport populates req.user so it is available only to the view(s) rendered during that request / response cycle (if any). Thus only avlaiable when user logged on, and it is avaliable anywehre in our app. Otherwise we would have to pass it as an object to each one of our routes manually.
 app.use(function(req, res, next){
   res.locals.user = req.user;
   next();
 });
 
-//Tell express to use flash
-app.use(flash());
 
 //================================
 //             ROUTES

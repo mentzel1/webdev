@@ -1,6 +1,10 @@
 <% include partials/header %>
 
 <div class="ui raised very padded text container segment">
+  <!-- ALERTS HERE -->
+  <% if(typeof success != "undefined" && success.length > 0){%>
+    <div class="ui red message"><%= success %></div>
+  <% } %>
   <h1>JackJack's Blog Page!</h1>
   <hr />
   <!-- Populate blogs -->

@@ -1,6 +1,9 @@
 <% include partials/header %>
-
 <div class="ui raised very padded text container segment">
+  <!-- ALERTS HERE -->
+  <% if(typeof error != "undefined" && error.length > 0){%>
+    <div class="ui red message"><%= error %></div>
+  <% } %>
   <div class = "ui huge header">Sign Up</div>
   <form class="ui form" action="/signup" method="POST">
     <div class="field">
@@ -31,10 +34,6 @@
     <div class="ui hidden divider"></div>
 <button class="ui blue basic button" type="submit">Submit</button>
   </form>
-  <!-- ALER HERE -->
-  <% if(typeof badPass != "undefined"){%>
-    <div class="ui red message">Passwords do not match!</div>
-  <%}%>
 </div>
 
 <% include partials/footer %>
