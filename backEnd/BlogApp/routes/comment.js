@@ -3,6 +3,7 @@ var router = express.Router();
 var Comment = require("../models/comment.js");
 var Blog = require("../models/blogpost.js");
 var middleware = require("../middleware/index.js");
+var User = require("../models/user.js");
 
 //NEW - shows page to create new Comment
 router.get("/blogs/:id/comment/new", middleware.loggedOn, function(req, res){
@@ -56,8 +57,7 @@ router.get("/blogs/:id_blog/comment/:id_comment/edit", function(req, res){
 router.put("/blogs/:id_blog/comment/:id_comment", function(req, res){
   //Replace an HTTP posted body property with the sanitized String
   req.body.comment.body = req.sanitize(req.body.comment.body);
-  req.body.comment.author = req.sanitize(req.body.comment.author);
-  Comment.findByIdAndUpdate(req.params.id_comment, {body: req.body.comment.body, author: req.body.comment.author}, function(err, commentUpdated){
+  Comment.findByIdAndUpdate(req.params.id_comment, {body: req.body.comment.body}, function(err, commentUpdated){
     if(err){
       console.log(err);
     }else{

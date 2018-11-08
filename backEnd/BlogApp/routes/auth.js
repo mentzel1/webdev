@@ -30,6 +30,7 @@ router.post("/signup", middleware.confirmPassword, function(req, res){
           console.log(err);
           res.redirect("back");
         }else{
+          req.flash("success", "Successfully registered!");
           res.redirect("/blogs");
         }
       });
@@ -44,6 +45,7 @@ router.get("/login", function(req, res){
 
 //Logs the user in using passport authentication middleware method
 router.post("/login", passport.authenticate("local", {failureRedirect: "/login"}), function(req, res){
+  req.flash("success", "Successfully logged in!");
   // console.log(req.user);
   res.redirect("/blogs");
 });
@@ -52,7 +54,7 @@ router.post("/login", passport.authenticate("local", {failureRedirect: "/login"}
 router.get("/logout", function(req, res){
   req.logout();
   req.flash("success", "Successfully logged out!");
-  res.render("login", {success: req.flash("success")});
+  res.redirect("/login");
 });
 
 module.exports = router;

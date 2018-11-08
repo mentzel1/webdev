@@ -86,6 +86,8 @@ app.use(flash());
 //When we set app.use without a path, this middleware is executed on every route of our app. We declare local variables so when passport populates req.user so it is available only to the view(s) rendered during that request / response cycle (if any). Thus only avlaiable when user logged on, and it is avaliable anywehre in our app. Otherwise we would have to pass it as an object to each one of our routes manually.
 app.use(function(req, res, next){
   res.locals.user = req.user;
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
   next();
 });
 
