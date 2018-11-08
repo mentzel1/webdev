@@ -42,7 +42,7 @@ router.post("/blogs/:id/comment", middleware.loggedOn, function(req, res){
 });
 
 //EDIT - Shows/populates the form to edit a single blog comment
-router.get("/blogs/:id_blog/comment/:id_comment/edit", function(req, res){
+router.get("/blogs/:id_blog/comment/:id_comment/edit", middleware.loggedOn, middleware.confirmCommentOwner, function(req, res){
   Comment.findById(req.params.id_comment, function(err, comment){
     if(err){
       console.log(err);
@@ -54,7 +54,7 @@ router.get("/blogs/:id_blog/comment/:id_comment/edit", function(req, res){
 });
 
 //UPDATE - updates comment information in our database
-router.put("/blogs/:id_blog/comment/:id_comment", function(req, res){
+router.put("/blogs/:id_blog/comment/:id_comment", middleware.loggedOn, middleware.confirmCommentOwner, function(req, res){
   //Replace an HTTP posted body property with the sanitized String
   req.body.comment.body = req.sanitize(req.body.comment.body);
   Comment.findByIdAndUpdate(req.params.id_comment, {body: req.body.comment.body}, function(err, commentUpdated){
@@ -67,7 +67,7 @@ router.put("/blogs/:id_blog/comment/:id_comment", function(req, res){
 });
 
 //DELETE - removes comment from the database
-router.delete("/blogs/:id_blog/comment/:id_comment", function(req, res){
+router.delete("/blogs/:id_blog/comment/:id_comment", middleware.loggedOn, middleware.confirmCommentOwner, function(req, res){
   //Find comment by ID and remove
   Comment.findByIdAndRemove(req.params.id_comment, function(err, foundComment){
     if(err){

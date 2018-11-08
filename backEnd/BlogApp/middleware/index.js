@@ -1,5 +1,6 @@
 var Blog = require("../models/blogpost.js");
 var flash = require("connect-flash-plus");
+var Comment = require("../models/comment.js");
 //Empty object variable we are defining methods for
 var middleware = {};
 
@@ -45,5 +46,23 @@ middleware.confirmBlogOwner = function(req, res, next){
 };
 
 //Checks if the current logged on user is the owener of a comment
+middleware.confirmCommentOwner = function(req, res, next){
+  //find comment in database
+  Comment.findById(req.params.id_comment, function(err, comment){
+    //If comment not found, show err
+    if(err){
+      console.log(err);
+    }else{
+      //If logged on user is author of comment, continue
+      if(req.user._id.equals(comment.author._id)){
+        next();
+        //stay on page and flash error
+      }else{
+        // res.send("ACCESS DENIED! Go Back!");
+        res.redirect("/blogs");
+      }
+    }
+  });
+};
 
 module.exports = middleware;
