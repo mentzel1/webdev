@@ -8,15 +8,80 @@ hr {
     border-width: 0.5px;
 }
 
+/* Comment Button? or read more button? */
+#main_button {
+  text-align: left;
+  border-right: : 5%;
+}
+
+/* Delete Button on where */
 #delete {
   display: inline;
 }
+/* ************************************************************************ */
 
-#main_button {
-  text-align: left;
-  padding-top: 10px;
+/* Remove border on navbar so dropdown menu on toggle has no space between the two */
+#menubar{
+  margin: 0;
 }
 
-/* #comment_btn{
-  float: right;
-} */
+
+/* Hide the toggle button until you hit mobile size */
+@media only screen and (min-width: 40em) {
+    .dropdown {
+        display: none !important;
+        padding-left: 5px;
+    }
+    a.item.toggle_link {
+      padding:0px !important;
+    }
+
+}
+
+/* Hide toggle items when you hit mobile size */
+@media only screen and (max-width: 40em) {
+    .toggle_item {
+        display: none !important;
+    }
+}
+
+/* Dropdown Button */
+.dropbtn {
+    /* background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px; */
+    border: none;
+    display: inline-block;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-color: #D3D3D3;
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #F0F0F0 !important;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}

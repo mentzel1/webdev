@@ -9,22 +9,38 @@
     crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/stylesheets/app.css" />
   </head>
   <body>
-    <div class="ui secondary pointing stackable menu">
+    <div class="ui secondary pointing menu" id="menubar">
       <div class="ui container">
-        <span class="item">  <i class="large code icon"></i></span>
+        <!-- Hidden Dropdown Menu -->
+        <div class="dropdown">
+          <span class="dropbtn item toggle_link toggle_button">  <i class="large code icon"></i></span>
+          <div class="dropdown-content">
+            <a class="item" href="/">Home</a>
+            <a class="item" href="/blogs/new">New Post</a>
+            <% if(!user){ %>
+              <a class="ui item" href="/signup">Sign Up</a>
+              <a class="ui item" href="/login">Login</a>
+            <% }else{ %>
+              <a class="ui item" href="#">Logged on: <%=user.firstName%> <%=user.lastName%></a>
+              <a class="ui item" href="/logout">Logout</a>
+            <% } %>
+          </div>
+        </div>
+        <!-- Active Menu -->
         <a class="active item">Blog Site</a>
-        <a class="item" href="/">Home</a>
-        <a class="item" href="/blogs/new">New Post</a>
+        <a class="item toggle_item" href="/">Home</a>
+        <a class="item toggle_item" href="/blogs/new">New Post</a>
         <div class="right menu">
           <% if(!user){ %>
-            <a class="ui item" href="/signup">Sign Up</a>
-            <a class="ui item" href="/login">Login</a>
+            <a class="ui item toggle_item" href="/signup">Sign Up</a>
+            <a class="ui item toggle_item" href="/login">Login</a>
           <% }else{ %>
-            <a class="ui item" href="#">Logged on: <%=user.firstName%> <%=user.lastName%></a>
-            <a class="ui item" href="/logout">Logout</a>
+            <a class="ui item toggle_item" href="#">Logged on: <%=user.firstName%> <%=user.lastName%></a>
+            <a class="ui item toggle_item" href="/logout">Logout</a>
           <% } %>
         </div>
       </div>
