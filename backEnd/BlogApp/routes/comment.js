@@ -60,6 +60,7 @@ router.put("/blogs/:id_blog/comment/:id_comment", middleware.loggedOn, middlewar
   Comment.findByIdAndUpdate(req.params.id_comment, {body: req.body.comment.body}, function(err, commentUpdated){
     if(err){
       console.log(err);
+      res.redirect("back");
     }else{
       res.redirect("/blogs/" + req.params.id_blog);
     }

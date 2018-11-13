@@ -36,7 +36,7 @@ router.post("/blogs", middleware.loggedOn, function(req, res){
       //Store current user as the author of this commnet
       newBlog.author = req.user._id;
       newBlog.save();
-      res.redirect("blogs");
+      res.redirect("/blogs");
     }
   });
 });
@@ -46,7 +46,8 @@ router.get("/blogs/:id", function(req, res){
   //Get specific blog through ID
   Blog.findById(req.params.id).populate('comments').populate("author").exec(function(err, blog){
     if(err){
-      redirect("back");
+      console.log(err);
+      res.redirect("/blogs");
     }else{
       res.render("blogpost/show", {blog: blog});
     }
@@ -57,6 +58,7 @@ router.get("/blogs/:id", function(req, res){
 router.get("/blogs/:id/edit", middleware.loggedOn, middleware.confirmBlogOwner, function(req, res){
   Blog.findById(req.params.id, function(err, foundBlog){
     if(err){
+      console.log(err);
       res.redirect("/blogs");
     }else{
       res.render("blogpost/edit", {blog: foundBlog});

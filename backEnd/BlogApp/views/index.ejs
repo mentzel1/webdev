@@ -2,6 +2,9 @@
 
 <div class="ui raised very padded text container segment">
   <!-- ALERTS HERE -->
+  <% if(typeof error != "undefined" && error.length > 0){%>
+    <div class="ui red message"><%= error %></div>
+  <% } %>
   <% if(typeof success != "undefined" && success.length > 0){%>
     <div class="ui green message"><%= success %></div>
   <% } %>

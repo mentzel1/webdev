@@ -16,6 +16,7 @@ router.post("/signup", middleware.confirmPassword, function(req, res){
   User.register({username: req.body.username}, req.body.password, function(err, user){
     if(err){
       console.log(err);
+      req.flash("error", err.message);
       res.redirect("/signup");
     }else{
       //Store First and last Name

@@ -32,12 +32,15 @@ middleware.confirmBlogOwner = function(req, res, next){
     //If blog not found, show err
     if(err){
       console.log(err);
+      req.flash("error", "This blog does not exist!");
+      res.redirect("/blogs");
     }else{
       //If logged on user is author of blog, continue
       if(req.user._id.equals(blog.author)){
         next();
         //stay on page and flash error
       }else{
+        req.flash("error", "Access Denied!");
         // res.send("ACCESS DENIED! Go Back!");
         res.redirect("/blogs");
       }
@@ -52,12 +55,15 @@ middleware.confirmCommentOwner = function(req, res, next){
     //If comment not found, show err
     if(err){
       console.log(err);
+      req.flash("error", "This comment deos not exist!");
+      res.redirect("/blogs");
     }else{
       //If logged on user is author of comment, continue
       if(req.user._id.equals(comment.author._id)){
         next();
         //stay on page and flash error
       }else{
+        req.flash("error", "Access Denied!");
         // res.send("ACCESS DENIED! Go Back!");
         res.redirect("/blogs");
       }
