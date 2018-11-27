@@ -38,11 +38,11 @@ app.use(expressSanitizer());
 //Do not have to add ejs file extension
 app.set("view engine", "ejs");
 //Connect to mongoDB database for BlogApp
-mongoose.connect('mongodb://blogAppUser:Bl0g_App_Pazzw0rd@localhost/blog_app?authSource=blog_app', {useNewUrlParser: true});
+mongoose.connect('mongodb://blogAppUser:Bl0g_App_Pazzw0rd@128.174.64.5/blog_app?authSource=blog_app', {useNewUrlParser: true});
 // mongoose.set('useFindAndModify', false);
 //Create new connection (faster) to mongoDB to store sessions in BlogApp
 var store = new mongoDBStore({
-  uri: "mongodb://blogAppUser:Bl0g_App_Pazzw0rd@localhost/blog_app?authSource=blog_app",
+  uri: "mongodb://blogAppUser:Bl0g_App_Pazzw0rd@128.174.64.5/blog_app?authSource=blog_app",
   collection: "sessions"
 });
 
