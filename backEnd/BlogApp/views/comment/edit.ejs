@@ -1,6 +1,6 @@
 <% include ../partials/header %>
 
-<div class="ui raised very padded text container segment">
+<div class="ui raised very padded text container segment" id="main_blog_container">
   <div class = "ui huge header">Edit Comment</div>
   <form class="ui form" action="/blogs/<%=id%>/comment/<%=comment._id%>?_method=PUT" method="POST">
     <div class="field">

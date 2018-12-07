@@ -1,0 +1,80 @@
+/* Centers everything, temp background is black. WE use z=1 so that all the elements inside the landing page div will be infront of the background images but not necessary here because of how i did things. WE set position to relative so we can use the z-index property.*/
+.landing-page{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  animation-name: campSlideShow;
+  animation-duration: 30s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -webkit-transform: translate3D(0, 0, 0);
+  -webkit-transform-style: preserve-3d;
+  /* Chrome compatibility*/
+  -webkit-animation-name: campSlideShow;
+  -webkit-animation-duration: 30s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  /* Mozilla compatibility */
+  -moz-animation-name: campSlideShow;
+  -moz-animation-duration: 30s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  /* Opera compatibility */
+  -o-animation-name: campSlideShow;
+  -o-animation-duration: 30s;
+  -o-animation-iteration-count: infinite;
+  -o-animation-timing-function: linear;
+}
+
+.header {
+  text-align: center;
+  color: white;
+  padding: 20% 0% 0% 0%;
+  margin: 0%;
+}
+
+/* The animation code using same size images to prevent autocscalling becing visible*/
+@keyframes campSlideShow{
+    0%   {background-image: url("../images/img1.jpg");}
+    20%  {background-image: url("../images/img2.jpg");}
+    40%  {background-image: url("../images/img3.jpg")}
+    60%  {background-image: url("../images/img4.jpg");}
+    80% {background-image: url("../images/img5.jpg");}
+    100% {background-image: url("../images/img1.jpg");}
+    /* 0%   {background-color: red;}
+    20%  {background-color: white;}
+    40%  {background-color: green;}
+    60%  {background-color: blue;}
+    80%  {background-color: purple;}
+    100% {background-color: red;} */
+}
+
+@-webkit-keyframes campSlideShow{
+    0%   {background-image: url("../images/img1.jpg");}
+    20%  {background-image: url("../images/img2.jpg");}
+    40%  {background-image: url("../images/img3.jpg")}
+    60%  {background-image: url("../images/img4.jpg");}
+    80% {background-image: url("../images/img5.jpg");}
+    100% {background-image: url("../images/img1.jpg");}
+    /* 0%   {background-color: red;}
+    20%  {background-color: white;}
+    40%  {background-color: green;}
+    60%  {background-color: blue;}
+    80%  {background-color: purple;}
+    100% {background-color: red;} */
+}
+
+@-moz-keyframes campSlideShow{
+    0%   {background-image: url("../images/img1.jpg");}
+    20%  {background-image: url("../images/img2.jpg");}
+    40%  {background-image: url("../images/img3.jpg")}
+    60%  {background-image: url("../images/img4.jpg");}
+    80% {background-image: url("../images/img5.jpg");}
+    100% {background-image: url("../images/img1.jpg");}
+    /* 0%   {background-color: red;}
+    20%  {background-color: white;}
+    40%  {background-color: green;}
+    60%  {background-color: blue;}
+    80%  {background-color: purple;}
+    100% {background-color: red;} */
+}

@@ -47,12 +47,11 @@ passport.use(new localStrategy(User.authenticate()));
 //Tell passport to use your user models serialize and desearialize methods for session support. When starting session this will serialize the user ID, and when ending session, finding the user by ID and desearializing.
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-//Make current user avaliable to all routes (so we do not have to add it manually to each route) SET LOCAL VAIRABLES avaliable to all files
+//Make variables user, error, success avaliable to all VIEWS under the "views" folder (so we do not have to add it manually to each route in order to access). We need to check if these variables exist and if length greater than 0
 app.use(function(req, res, next){
   res.locals.user = req.user;
   res.locals.error = req.flash("error");
   res.locals.success = req.flash("success");
-
   next();
 });
 

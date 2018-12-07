@@ -23,8 +23,12 @@ hr {
 /* Remove border on navbar so dropdown menu on toggle has no space between the two */
 #menubar{
   margin: 0;
+  background-color: #f5faff;
 }
 
+#main_blog_container{
+  margin-top: 70px;
+}
 
 /* Hide the toggle button until you hit mobile size */
 @media only screen and (min-width: 40em) {
