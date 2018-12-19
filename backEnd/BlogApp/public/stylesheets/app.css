@@ -1,3 +1,13 @@
+body {
+  background-image: url("/assets/baking.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.8;
+
+}
+
 hr {
     display: block;
     margin-top: 0.5em;
@@ -6,6 +16,26 @@ hr {
     margin-right: auto;
     border-style: inset;
     border-width: 0.5px;
+}
+
+.main_page {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.main_title{
+  color: white;
+  background-color: black;
+  padding: 3%;
+  opacity: 0.6;
+  width: 100%;
+}
+
+.main_title h1 {
+  font-size: 50px;
 }
 
 /* Comment Button? or read more button? */
@@ -23,7 +53,7 @@ hr {
 /* Remove border on navbar so dropdown menu on toggle has no space between the two */
 #menubar{
   margin: 0;
-  background-color: #f5faff;
+  background-color: white;
 }
 
 #main_blog_container{
@@ -81,7 +111,7 @@ hr {
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #F0F0F0 !important;}
+.dropdown-content a:hover {background-color: #ebf5ff !important;}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {display: block;}

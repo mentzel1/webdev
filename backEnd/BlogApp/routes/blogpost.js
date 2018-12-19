@@ -6,7 +6,7 @@ var middleware = require("../middleware/index.js");
 
 //"INDEX" displays a list of all blogs
 router.get("/", function(req, res){
-  res.redirect("/blogs");
+  res.render("main");
 });
 
 //"INDEX" displays a list of all blogs
