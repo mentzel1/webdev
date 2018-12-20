@@ -1,5 +1,5 @@
 body {
-  background-image: url("/assets/baking.jpg");
+  background-image: url("/assets/baking2.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -32,6 +32,9 @@ hr {
   padding: 3%;
   opacity: 0.6;
   width: 100%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  box-shadow: 10px 10px 5px grey;
 }
 
 .main_title h1 {
