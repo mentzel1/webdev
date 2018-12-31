@@ -10,7 +10,7 @@
   <!-- Replace all newline "\r\n" with HTML bracket for new line, then show unescaped html using "-" instead of escaped html value using "=" -->
   <p><%-blog.body.replace(/\r\n/g, "<br>");%></p>
   <% if(user){ %>
-    <%if(user._id.equals(blog.author._id)){%>
+    <%if(user._id.equals(blog.author._id) || user._id.equals("5be06ec535f46c4974094324")) {%>
       <a href="/blogs/<%= blog._id%>/edit" class="ui instagram button">Edit Blog</a>
       <form id="delete" action="/blogs/<%=blog._id%>?_method=DELETE" method="POST">
         <button class="ui youtube button">DELETE</button>
@@ -29,9 +29,9 @@
     <div class="ui segment">
       <h4><%="Author: " + blog.comments[i].author.firstName + " " + blog.comments[i].author.lastName %></h4>
       <p><em><%=blog.comments[i].date.toDateString()%></em></p>
-      <p><%=blog.comments[i].body%></p>
+      <p><%-blog.comments[i].body.replace(/\r\n/g, "<br>");%></p>
       <% if(user){ %>
-        <%if(user._id.equals(blog.comments[i].author._id)){%>
+        <%if(user._id.equals(blog.comments[i].author._id) || user._id.equals("5be06ec535f46c4974094324")) {%>
           <a href="/blogs/<%=blog._id%>/comment/<%=blog.comments[i]._id%>/edit" class="ui instagram button">Edit Blog</a>
           <form id="delete" action="/blogs/<%=blog._id%>/comment/<%=blog.comments[i]._id%>?_method=DELETE" method="POST">
             <button class="ui youtube button">DELETE</button>

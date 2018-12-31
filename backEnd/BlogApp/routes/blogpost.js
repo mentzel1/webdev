@@ -4,7 +4,7 @@ var Blog = require("../models/blogpost.js");
 var Comment = require("../models/comment.js");
 var middleware = require("../middleware/index.js");
 
-//"INDEX" displays a list of all blogs
+//"INDEX" displays splash page
 router.get("/", function(req, res){
   res.render("main");
 });
